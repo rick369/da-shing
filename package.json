@@ -7,7 +7,8 @@
     "lint": "eslint src/**",
     "build": "webpack --progress --colors",
     "build:watch": "npm run build -- --watch",
-    "test": "mocha test/.setup.js test/**/*-test.js"
+    "test": "mocha test/.setup.js test/**/*-test.js",
+    "test:watch": "npm run test -- --watch"
   },
   "engines": {
     "node": "6.2.2"
@@ -32,6 +33,7 @@
     "react": "^15.1.0",
     "react-addons-test-utils": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-router": "^2.5.1",
     "webpack": "^1.13.1"
   },
   "dependencies": {
