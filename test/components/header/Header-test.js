@@ -4,7 +4,6 @@ import { shallow, mount, render } from 'enzyme';
 import Header from '../../../src/components/header';
 
 describe("Header Component", function() {
-
   it("should is hello-message class", function() {
     expect(shallow(<Header name="Ben" />).is('.header')).to.equal(true);
   });
