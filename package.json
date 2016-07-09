@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node index.js",
-    "dev": "node index.js",
+    "start": "node index.js",
     "lint": "eslint src/**",
     "lint:watch": "esw src/** --watch",
+    "build": "webpack --progress --colors",
+    "build:watch": "npm run build -- --watch",
     "test": "mocha test/.setup.js test/**/*-test.js",
     "test:watch": "npm run test -- --watch"
   },
@@ -36,12 +37,11 @@
     "react-dom": "^15.1.0",
     "react-router": "^2.5.1",
     "sinon": "^1.17.4",
-    "webpack": "^1.13.1",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.1"
+    "webpack": "^1.13.1"
   },
   "dependencies": {
     "express": "^4.14.0",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "serve-static": "^1.11.1"
   }
 }
