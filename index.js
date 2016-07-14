@@ -8,6 +8,9 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(favicon(__dirname + '/dist/favicon.ico'));
 
+var apiRouter = require('./api');
+app.use('/api', apiRouter);
+
 var webpackDevMiddleware = require("webpack-dev-middleware");
 var webpack = require("webpack");
 var webpackConfig = require('./webpack.config');

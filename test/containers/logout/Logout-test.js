@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
 import { spy } from 'sinon';
 
-import Logout from '../../../src/containers/logout';
+import { Logout } from '../../../src/containers/logout';
 
 describe("Logout Container", function() {
   it("should contains Logout text", function() {

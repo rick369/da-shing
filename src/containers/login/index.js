@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import LoginForm from './components/LoginForm.js';
 
 import { auth } from '../../utils';
+
+import { updateUser } from '../../actions/user';
 
 class Login extends React.Component {
   constructor(props) {
@@ -13,10 +16,13 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit(email, password) {
-    auth.login(email, password, (loggedIn) => {
+    const { onUpdateUser } = this.props;
+    auth.login(email, password, (loggedIn, user) => {
       if (!loggedIn) {
         return this.setState({ error: true });
       }
+
+      onUpdateUser(user);
 
       const { location } = this.props;
       if (location.state && location.state.nextPathname) {
@@ -48,10 +54,30 @@ class Login extends React.Component {
 Login.propTypes = {
   location: React.PropTypes.any,
   router: React.PropTypes.any,
+  onUpdateUser: React.PropTypes.func,
 };
 
 Login.contextTypes = {
   router: React.PropTypes.any,
 };
 
-export default Login;
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onUpdateUser: (user) => {
+      dispatch(updateUser(user));
+    },
+  };
+}
+
+export {
+  Login,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

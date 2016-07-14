@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
 import { spy } from 'sinon';
 
-import Login from '../../../src/containers/login';
+import { Login } from '../../../src/containers/login';
 
 describe("Login Container", function() {
   it("should contains Login text", function() {

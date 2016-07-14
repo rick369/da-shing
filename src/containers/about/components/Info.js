@@ -1,33 +1,22 @@
 import React from 'react';
 
 class Info extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onButtonClick = this.onButtonClick.bind(this);
-  }
-  onButtonClick() {
-    this.props.onButtonClick();
-  }
+  componentDidMount() {}
   render() {
+    const { data } = this.props;
     return (
       <div className="info">
         <h3>Info</h3>
-        <p>Hello, my name is {this.props.name}.</p>
-        <p>
-          This is basic project, <button onClick={this.onButtonClick}>Click Me.</button>
-        </p>
+        {
+          data.map((item) => <li key={`info-${item.id}`}>{item.text}</li>)
+        }
       </div>
     );
   }
 }
 
 Info.propTypes = {
-  name: React.PropTypes.string,
-  onButtonClick: React.PropTypes.func,
-};
-
-Info.defaultProps = {
-  name: 'Ben',
+  data: React.PropTypes.array,
 };
 
 export default Info;

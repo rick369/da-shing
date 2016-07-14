@@ -7,22 +7,15 @@ import Info from '../../../../src/containers/about/components/Info';
 
 describe("About's Info Component", function() {
   it("should is info class", function() {
-    expect(shallow(<Info />).is('.info')).to.equal(true);
+    expect(shallow(<Info data={[]} />).is('.info')).to.equal(true);
   });
 
   it('allows us to set props', () => {
-    const wrapper = mount(<Info name="Sherry" />);
-    expect(wrapper.props().name).to.equal("Sherry");
-    wrapper.setProps({ name: "Ben" });
-    expect(wrapper.props().name).to.equal("Ben");
-  });
-
-  it('simulates onButtonClick click events', () => {
-    const onButtonClick = spy();
-    const wrapper = mount(
-      <Info onButtonClick={onButtonClick} />
-    );
-    wrapper.find('button').simulate('click');
-    expect(onButtonClick.calledOnce).to.equal(true);
+    let data = [];
+    const wrapper = mount(<Info data={data} />);
+    expect(wrapper.props().data).to.equal(data);
+    data = [{id: 1, text: 'hello'}];
+    wrapper.setProps({ data: data });
+    expect(wrapper.props().data).to.equal(data);
   });
 });

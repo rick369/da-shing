@@ -7,6 +7,19 @@ import {
 
 import routes from './routes';
 
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import reducers from './reducers';
+import { syncHistoryWithStore } from 'react-router-redux';
+
+const store = createStore(reducers, applyMiddleware(thunk));
+
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store);
+
 render((
-  <Router history={browserHistory} routes={routes} />
+  <Provider store={store}>
+    <Router history={history} routes={routes} />
+  </Provider>
 ), document.getElementById('app'));

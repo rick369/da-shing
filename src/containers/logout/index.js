@@ -1,9 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { auth } from '../../utils';
 
+import { initUser } from '../../actions/user';
+
 class Logout extends React.Component {
   componentDidMount() {
+    const { onInitUser } = this.props;
+    onInitUser();
     auth.logout(() => {
       this.context.router.replace('/');
     });
@@ -18,8 +23,31 @@ class Logout extends React.Component {
   }
 }
 
+Logout.propTypes = {
+  onInitUser: React.PropTypes.func,
+};
+
 Logout.contextTypes = {
   router: React.PropTypes.any,
 };
 
-export default Logout;
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onInitUser: () => {
+      dispatch(initUser());
+    },
+  };
+}
+
+export {
+  Logout,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Logout);

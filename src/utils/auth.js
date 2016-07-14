@@ -3,6 +3,9 @@ function pretendRequest(email, pass, cb) {
     if (email === 'ben@gmail.com' && pass === 'password') {
       cb({
         authenticated: true,
+        user: {
+          name: 'Ben',
+        },
         token: Math.random().toString(36).substring(7),
       });
     } else {
@@ -23,7 +26,7 @@ const login = (email, pass, cb) => {
   pretendRequest(email, pass, (res) => {
     if (res.authenticated) {
       localStorage.token = res.token;
-      if (cb) cb(true);
+      if (cb) cb(true, res.user);
       onChange(true);
     } else {
       if (cb) cb(false);
