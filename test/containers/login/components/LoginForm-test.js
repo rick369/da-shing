@@ -4,7 +4,7 @@ import { shallow, mount, render } from 'enzyme';
 
 import { spy } from 'sinon';
 
-import LoginForm from '../../../../src/containers/login/components/LoginForm';
+import LoginForm from '../../../../src/containers/login/components/login-form';
 
 describe("Login's LoginForm Component", function() {
   it("should is login-form class", function() {

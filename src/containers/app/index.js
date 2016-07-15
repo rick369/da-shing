@@ -1,11 +1,15 @@
 import React from 'react';
 
-import Header from '../../components/header';
+import Header from '../header';
+import DevTools from '../DevTools';
 
 const App = (props) => (
   <div>
-    <Header />
-    {props.children}
+    <div>
+      <Header />
+      {props.children}
+    </div>
+    {process.env.NODE_ENV === 'development' && <DevTools />}
   </div>
 );
 

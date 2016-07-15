@@ -1,13 +1,13 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
-import { Header } from '../../../src/components/header';
+import { Header } from '../../../src/containers/header';
 
 const user = {
   name: 'Ben',
 };
 
-describe("Header Component", function() {
+describe("Header Container", function() {
   it("should is header class", function() {
     expect(shallow(<Header user={user}/>).is('.header')).to.equal(true);
   });

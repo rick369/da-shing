@@ -7,13 +7,29 @@ import {
 
 import routes from './routes';
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-const store = createStore(reducers, applyMiddleware(thunk));
+import { persistState } from 'redux-devtools';
+import DevTools from './containers/DevTools';
+let enhancer;
+if (process.env.NODE_ENV === 'production') {
+  enhancer = applyMiddleware(thunk);
+} else {
+  enhancer = compose(
+    applyMiddleware(thunk),
+    DevTools.instrument(),
+    persistState(
+      window.location.href.match(
+        /[?&]debug_session=([^&#]+)\b/
+      )
+    )
+  );
+}
+const store = createStore(reducers, enhancer);
 
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);

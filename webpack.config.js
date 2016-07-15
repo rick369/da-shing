@@ -19,7 +19,11 @@ var config = {
       }
     }]
   },
-  plugins: []
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    }),
+  ]
 };
 
 /*
@@ -34,7 +38,7 @@ if (!__DEVELOPMENT__) {
 }
 */
 
-if (__DEVELOPMENT__) {
+if (process.env.NODE_ENV === 'development') {
   config.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true');
   config.plugins.push(
     new webpack.optimize.OccurenceOrderPlugin(),
