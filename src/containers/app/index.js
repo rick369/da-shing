@@ -13,7 +13,10 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <Header isLoggedIn={isLoggedIn} user={user} />
+          <Header
+            isLoggedIn={isLoggedIn}
+            user={user}
+          />
           {this.props.children}
         </div>
         {process.env.NODE_ENV === 'development' && <DevTools />}
