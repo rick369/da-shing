@@ -5,8 +5,6 @@ import LoginForm from './components/login-form';
 
 import { auth } from '../../utils';
 
-import { updateUser } from '../../actions/user';
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -16,13 +14,10 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit(email, password) {
-    const { onUpdateUser } = this.props;
-    auth.login(email, password, (loggedIn, user) => {
+    auth.login(email, password, (loggedIn) => {
       if (!loggedIn) {
         return this.setState({ error: true });
       }
-
-      onUpdateUser(user);
 
       const { location } = this.props;
       if (location.state && location.state.nextPathname) {
@@ -54,7 +49,6 @@ class Login extends React.Component {
 Login.propTypes = {
   location: React.PropTypes.any,
   router: React.PropTypes.any,
-  onUpdateUser: React.PropTypes.func,
 };
 
 Login.contextTypes = {
@@ -65,12 +59,8 @@ function mapStateToProps() {
   return {};
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onUpdateUser: (user) => {
-      dispatch(updateUser(user));
-    },
-  };
+function mapDispatchToProps() {
+  return {};
 }
 
 export {

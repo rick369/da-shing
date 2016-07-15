@@ -18,14 +18,15 @@ const onChange = () => {
 };
 
 const login = (email, pass, cb) => {
-  if (localStorage.token) {
+  if (localStorage.getItem('token')) {
     if (cb) cb(true);
     onChange(true);
     return;
   }
   pretendRequest(email, pass, (res) => {
     if (res.authenticated) {
-      localStorage.token = res.token;
+      localStorage.setItem('token', res.token);
+      localStorage.setItem('user', JSON.stringify(res.user));
       if (cb) cb(true, res.user);
       onChange(true);
     } else {
@@ -35,15 +36,26 @@ const login = (email, pass, cb) => {
   });
 };
 
-const getToken = () => localStorage.token;
+const getToken = () => localStorage.getItem('token');
 
 const logout = (cb) => {
-  delete localStorage.token;
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
   if (cb) cb();
   onChange(false);
 };
 
-const loggedIn = () => !!localStorage.token;
+const loggedIn = () => !!localStorage.getItem('token');
+
+const getUser = () => {
+  if (!localStorage.getItem('token')) {
+    return {
+      name: 'Guest',
+    };
+  }
+
+  return JSON.parse(localStorage.getItem('user'));
+};
 
 export default {
   login,
@@ -51,4 +63,5 @@ export default {
   logout,
   loggedIn,
   onChange,
+  getUser,
 };
