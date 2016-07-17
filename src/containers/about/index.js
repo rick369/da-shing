@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import Info from './components/Info';
 
@@ -11,10 +12,10 @@ class About extends React.Component {
     onFetchInfoData();
   }
   render() {
-    const { info } = this.props;
+    const { t, info } = this.props;
     return (
-      <div className="about">
-        <h2>About</h2>
+      <div>
+        <h2>{t('about')}</h2>
         <Info data={info.data} />
       </div>
     );
@@ -22,6 +23,7 @@ class About extends React.Component {
 }
 
 About.propTypes = {
+  t: React.PropTypes.func,
   onFetchInfoData: React.PropTypes.func,
   info: React.PropTypes.object,
 };
@@ -40,11 +42,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export {
-  About,
-};
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(About);
+)(
+  translate('nav', { wait: true })(About)
+);

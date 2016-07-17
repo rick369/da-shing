@@ -5,7 +5,9 @@ import {
   browserHistory,
 } from 'react-router';
 
-import './utils';
+// i18n 處理
+import { I18nextProvider } from 'react-i18next';
+import { i18n } from './utils';
 
 import routes from './routes';
 
@@ -19,6 +21,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 render((
   <Provider store={store}>
-    <Router history={history} routes={routes} />
+    <I18nextProvider i18n={i18n}>
+      <Router history={history} routes={routes} />
+    </I18nextProvider>
   </Provider>
 ), document.getElementById('app'));

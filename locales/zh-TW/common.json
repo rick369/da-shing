@@ -1,3 +1,6 @@
 {
-  "appName": "初始 web 專案"
+  "appName": "初始 web 專案",
+  "language": "語系",
+  "hello": "你好",
+  "not found": "找不到"
 }

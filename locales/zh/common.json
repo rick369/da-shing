@@ -1,3 +1,6 @@
 {
-  "appName": "初始网络专案"
+  "appName": "初始网络专案",
+  "language": "语系",
+  "hello": "你好",
+  "not found": "找不到"
 }

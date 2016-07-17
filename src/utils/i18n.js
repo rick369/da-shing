@@ -2,9 +2,6 @@ import i18n from 'i18next';
 import XHR from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-import { initI18N } from '../actions/i18n';
-import store from '../store';
-
 i18n
   .use(XHR)
   .use(LanguageDetector) // 偵測瀏覽器語系
@@ -20,10 +17,6 @@ i18n
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
     whitelist: ['en', 'zh-TW', 'zh'],
-  }, (err, t) => {
-    store.dispatch(
-      initI18N(t)
-    );
   });
 
 // i18n.changeLanguage('zh-TW');
