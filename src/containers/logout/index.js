@@ -33,6 +33,10 @@ function mapDispatchToProps() {
   return {};
 }
 
+export {
+  Logout,
+};
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

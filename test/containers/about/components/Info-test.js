@@ -6,6 +6,10 @@ import { spy } from 'sinon';
 import Info from '../../../../src/containers/about/components/Info';
 
 describe("About's Info Component", function() {
+  it("should is info class", function() {
+    expect(shallow(<Info data={[]} />).is('.info')).to.equal(true);
+  });
+
   it('allows us to set props', () => {
     let data = [];
     const wrapper = mount(<Info data={data} />);

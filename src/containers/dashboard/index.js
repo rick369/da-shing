@@ -1,20 +1,18 @@
 import React from 'react';
-import { translate } from 'react-i18next';
+
+import { auth } from '../../utils';
 
 class Dashboard extends React.Component {
   componentDidMount() {}
   render() {
-    const { t } = this.props;
     return (
       <div className="dashboard">
-        <h2>{t('dashboard')}</h2>
+        <h2>Dashboard</h2>
+        <p>You made it!</p>
+        <p>{auth.getToken()}</p>
       </div>
     );
   }
 }
 
-Dashboard.propTypes = {
-  t: React.PropTypes.func,
-};
-
-export default translate('nav', { wait: true })(Dashboard);
+export default Dashboard;

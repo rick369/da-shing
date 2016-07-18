@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
 
 import LoginForm from './components/login-form';
 
@@ -31,10 +30,9 @@ class Login extends React.Component {
     });
   }
   render() {
-    const { t } = this.props;
     return (
       <div className="login">
-        <h2>{t('login')}</h2>
+        <h2>Login</h2>
 
         <LoginForm handleSubmit={this.handleSubmit} />
 
@@ -49,7 +47,6 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  t: React.PropTypes.func,
   location: React.PropTypes.any,
   router: React.PropTypes.any,
 };
@@ -66,9 +63,11 @@ function mapDispatchToProps() {
   return {};
 }
 
+export {
+  Login,
+};
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(
-  translate('nav', { wait: true })(Login)
-);
+)(Login);

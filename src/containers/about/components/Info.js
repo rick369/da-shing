@@ -5,7 +5,7 @@ class Info extends React.Component {
   render() {
     const { data } = this.props;
     return (
-      <div>
+      <div className="info">
         <h3>Info</h3>
         {
           data.map((item) => <li key={`info-${item.id}`}>{item.text}</li>)
