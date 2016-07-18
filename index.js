@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var favicon = require('serve-favicon');
-var fs = require('fs');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -9,16 +8,6 @@ app.use(favicon(__dirname + '/dist/favicon.ico'));
 
 var apiRouter = require('./api');
 app.use('/api', apiRouter);
-
-app.get('/locales/**', function (req, res, next) {
-  var path = __dirname + req.path;
-  fs.stat(path, function (err, stats) {
-    if (err) {
-      res.status(404).send('Sorry, we cannot find that!');
-    }
-    res.sendFile(path);
-  });
-});
 
 var webpackDevMiddleware = require("webpack-dev-middleware");
 var webpack = require("webpack");
