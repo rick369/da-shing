@@ -11,7 +11,7 @@ class Logout extends React.Component {
   }
   render() {
     return (
-      <div className="logout">
+      <div>
         <h2>Logout</h2>
         <p>You are now logged out</p>
       </div>
@@ -32,10 +32,6 @@ function mapStateToProps() {
 function mapDispatchToProps() {
   return {};
 }
-
-export {
-  Logout,
-};
 
 export default connect(
   mapStateToProps,

@@ -13,13 +13,15 @@ class About extends React.Component {
   render() {
     const { info } = this.props;
     return (
-      <div className="about">
+      <div>
         <h2>About</h2>
         <Info data={info.data} />
       </div>
     );
   }
 }
+
+About.fetchData = ({ store }) => store.dispatch(fetchInfoData());
 
 About.propTypes = {
   onFetchInfoData: React.PropTypes.func,
@@ -39,10 +41,6 @@ function mapDispatchToProps(dispatch) {
     },
   };
 }
-
-export {
-  About,
-};
 
 export default connect(
   mapStateToProps,

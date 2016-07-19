@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class NotFound extends React.Component {
   componentDidMount() {}
@@ -11,4 +12,15 @@ class NotFound extends React.Component {
   }
 }
 
-export default NotFound;
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps() {
+  return {};
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotFound);

@@ -16,6 +16,10 @@ import Dashboard from './containers/dashboard';
 import NotFound from './containers/not-found';
 
 function requireAuth(nextState, replace) {
+  const serverSideRendering = localStorage.getItem('serverSideRendering');
+  if (serverSideRendering) {
+    return;
+  }
   if (!auth.loggedIn()) {
     replace({
       pathname: '/login',

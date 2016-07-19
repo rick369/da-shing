@@ -1,14 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Home extends React.Component {
   componentDidMount() {}
   render() {
     return (
-      <div className="home">
+      <div>
         <h2>Home</h2>
       </div>
     );
   }
 }
 
-export default Home;
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps() {
+  return {};
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

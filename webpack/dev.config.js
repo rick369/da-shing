@@ -1,7 +1,9 @@
 var webpack = require('webpack');
 
 var config = {
+  devtool: 'source-map',
   entry: [
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
     './src/router.js'
   ],
   output: {
@@ -15,7 +17,7 @@ var config = {
       exclude: /(node_modules|bower_components)/,
       loader: 'babel',
       query: {
-        presets: ['es2015', 'react']
+        presets: ['es2015', 'react'],
       }
     }]
   },
@@ -23,29 +25,10 @@ var config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
-  ]
-};
-
-/*
-if (!__DEVELOPMENT__) {
-  config.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-  );
-}
-*/
-
-if (process.env.NODE_ENV === 'development') {
-  config.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true');
-  config.plugins.push(
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
-  );
-  config.devtool = 'source-map';
-}
+  ]
+};
 
 module.exports = config;

@@ -7,10 +7,6 @@ import { spy } from 'sinon';
 import LoginForm from '../../../../src/containers/login/components/login-form';
 
 describe("Login's LoginForm Component", function() {
-  it("should is login-form class", function() {
-    expect(shallow(<LoginForm />).is('.login-form')).to.equal(true);
-  });
-
   it("should contains email text", function() {
     expect(shallow(<LoginForm />).contains(
       <span>email:</span>
@@ -28,7 +24,7 @@ describe("Login's LoginForm Component", function() {
     const wrapper = mount(
       <LoginForm handleSubmit={handleSubmit} />
     );
-    wrapper.find('.login-form').simulate('submit');
+    wrapper.find('form').simulate('submit');
     expect(handleSubmit.calledOnce).to.equal(true);
   });
 });

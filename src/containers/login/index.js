@@ -31,7 +31,7 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <div className="login">
+      <div>
         <h2>Login</h2>
 
         <LoginForm handleSubmit={this.handleSubmit} />
@@ -62,10 +62,6 @@ function mapStateToProps() {
 function mapDispatchToProps() {
   return {};
 }
-
-export {
-  Login,
-};
 
 export default connect(
   mapStateToProps,
