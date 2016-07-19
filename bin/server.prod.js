@@ -26,10 +26,12 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 import React from 'react';;
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
+import { Provider } from 'react-redux';
 
 import store from '../src/store';
 import routes from '../src/routes';
-import { Provider } from 'react-redux';
+import Html from '../src/helpers/Html';
+
 app.use((req, res) => {
   // Note that req.url here should be the full URL path from
   // the original request, including the query string.
@@ -40,19 +42,15 @@ app.use((req, res) => {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
       getReduxPromise().then(()=> {
-        const InitialComponent = (
+        const component = (
           <Provider store={store}>
             <RouterContext {...renderProps} />
           </Provider>
         );
 
-        const initialState = store.getState();
-        const componentHTML = renderToString(InitialComponent);
-
-        res.render('index', {
-          initialState,
-          componentHTML
-        });
+        res.send(
+          renderToString(<Html component={component} store={store} />)
+        );
       });
 
       function getReduxPromise () {

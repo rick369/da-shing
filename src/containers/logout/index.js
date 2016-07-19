@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 
 import { auth } from '../../utils';
 
@@ -12,6 +13,7 @@ class Logout extends React.Component {
   render() {
     return (
       <div>
+        <Helmet title="Logout" />
         <h2>Logout</h2>
         <p>You are now logged out</p>
       </div>

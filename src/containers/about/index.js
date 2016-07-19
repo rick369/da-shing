@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 
 import Info from './components/Info';
 
@@ -14,6 +15,7 @@ class About extends React.Component {
     const { info } = this.props;
     return (
       <div>
+        <Helmet title="About Us" />
         <h2>About</h2>
         <Info data={info.data} />
       </div>

@@ -1,9 +1,12 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 
 import Header from '../../components/header';
 import DevTools from '../DevTools';
 
 import { auth } from '../../utils';
+
+import config from '../../../config';
 
 class App extends React.Component {
   componentDidMount() {}
@@ -12,6 +15,7 @@ class App extends React.Component {
     const user = auth.getUser();
     return (
       <div>
+        <Helmet {...config.app.head} />
         <div>
           <Header isLoggedIn={isLoggedIn} user={user} />
           {this.props.children}
