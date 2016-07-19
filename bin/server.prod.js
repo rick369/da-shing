@@ -7,7 +7,6 @@ const rootDir = path.resolve(__dirname, '..');
 const app = express();
 
 app.set('port', (process.env.PORT || 8080));
-app.set('view engine', 'pug');
 
 app.use(favicon(rootDir + '/dist/favicon.ico'));
 app.use(serveStatic(rootDir + '/dist', {
