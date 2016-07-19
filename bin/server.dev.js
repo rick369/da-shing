@@ -1,18 +1,22 @@
-var express = require('express');
-var app = express();
-var favicon = require('serve-favicon');
+import express from 'express';
+import favicon from 'serve-favicon';
+import path from 'path';
 
-app.set('port', (process.env.PORT || 5000));
+const rootDir = path.resolve(__dirname, '..');
 
-app.use(favicon(__dirname + '/dist/favicon.ico'));
+const app = express();
 
-var apiRouter = require('./api');
+app.set('port', (process.env.PORT || 3000));
+
+app.use(favicon(rootDir + '/dist/favicon.ico'));
+
+import apiRouter from '../api';
 app.use('/api', apiRouter);
 
-var webpackDevMiddleware = require("webpack-dev-middleware");
-var webpack = require("webpack");
-var webpackConfig = require('./webpack');
-var compiler = webpack(webpackConfig);
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpack from 'webpack';
+import webpackConfig from '../webpack';
+const compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler, {
   contentBase: 'dist',
   quiet: true,
@@ -29,7 +33,7 @@ app.use(require("webpack-hot-middleware")(compiler, {
 }));
 
 app.use(function(req, res, next) {
-  res.sendFile(__dirname + '/dist/index.html');
+  res.sendFile(rootDir + '/dist/index.html');
 });
 
 app.listen(app.get('port'), function() {

@@ -1,11 +1,16 @@
 var webpack = require('webpack');
+var CleanPlugin = require('clean-webpack-plugin');
+var path = require('path');
+
+var rootDir = path.resolve(__dirname, '..');
+var assetsPath = path.resolve(rootDir, './dist/build');
 
 var config = {
   entry: [
     './src/router.js'
   ],
   output: {
-    path: __dirname + '/dist/build',
+    path: rootDir + '/dist/build',
     publicPath: '/build/',
     filename: 'bundle.js'
   },
@@ -20,8 +25,13 @@ var config = {
     }]
   },
   plugins: [
+    new CleanPlugin([assetsPath], { root: rootDir }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.HOST': JSON.stringify(process.env.HOST),
+      'process.env.PORT': JSON.stringify(process.env.PORT),
+      'process.env.APIHOST': JSON.stringify(process.env.APIHOST),
+      'process.env.APIPORT': JSON.stringify(process.env.APIPORT)
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

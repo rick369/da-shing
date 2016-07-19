@@ -1,28 +1,21 @@
-var express = require('express');
-var app = express();
-var favicon = require('serve-favicon');
+import express from 'express';
+import favicon from 'serve-favicon';
+import path from 'path';
+import serveStatic from 'serve-static';
 
-app.set('port', (process.env.PORT || 5000));
+const rootDir = path.resolve(__dirname, '..');
+const app = express();
+
+app.set('port', (process.env.PORT || 8080));
 app.set('view engine', 'pug');
 
-app.use(favicon(__dirname + '/dist/favicon.ico'));
-
-var apiRouter = require('./api');
-app.use('/api', apiRouter);
-
-var webpackDevMiddleware = require("webpack-dev-middleware");
-var webpack = require("webpack");
-var webpackConfig = require('./webpack');
-var compiler = webpack(webpackConfig);
-app.use(webpackDevMiddleware(compiler, {
-  contentBase: 'dist',
-  quiet: true,
-  noInfo: true,
-  hot: true,
-  inline: true,
-  publicPath: webpackConfig.output.publicPath,
-  headers: {'Access-Control-Allow-Origin': '*'}
+app.use(favicon(rootDir + '/dist/favicon.ico'));
+app.use(serveStatic(rootDir + '/dist', {
+  'index': false
 }));
+
+import apiRouter from '../api';
+app.use('/api', apiRouter);
 
 if (typeof localStorage === "undefined" || localStorage === null) {
   var LocalStorage = require('node-localstorage').LocalStorage;
@@ -34,8 +27,8 @@ import React from 'react';;
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 
-import store from './src/store';
-import routes from './src/routes';
+import store from '../src/store';
+import routes from '../src/routes';
 import { Provider } from 'react-redux';
 app.use((req, res) => {
   // Note that req.url here should be the full URL path from

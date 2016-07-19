@@ -23,7 +23,11 @@ var config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.HOST': JSON.stringify(process.env.HOST),
+      'process.env.PORT': JSON.stringify(process.env.PORT),
+      'process.env.APIHOST': JSON.stringify(process.env.APIHOST),
+      'process.env.APIPORT': JSON.stringify(process.env.APIPORT)
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
