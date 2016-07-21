@@ -3,3 +3,6 @@ node_modules
 npm-debug.log
 dist/build/
 scratch
+webpack-assets.json
+webpack-stats.json
+npm-debug.log

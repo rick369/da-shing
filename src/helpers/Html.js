@@ -6,9 +6,10 @@ import Helmet from 'react-helmet';
 class Html extends Component {
   componentDidMount() {}
   render() {
-    const { component, store } = this.props;
+    const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
+
     return (
       <html lang="en-us">
         <head>
@@ -20,6 +21,19 @@ class Html extends Component {
 
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+          {/* styles (will be present only in production with webpack extract text plugin) */}
+          {
+            Object.keys(assets.styles).map((style, i) =>
+              <link
+                href={assets.styles[style]}
+                key={i}
+                media="screen, projection"
+                rel="stylesheet"
+                type="text/css"
+              />)
+          }
+
         </head>
         <body>
           <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
@@ -29,7 +43,13 @@ class Html extends Component {
             }}
             charSet="UTF-8"
           />
-          <script src="/build/bundle.js" charSet="UTF-8" />
+          {/* javascripts */}
+          {/* (usually one for each "entry" in webpack configuration) */}
+          {/* (for more informations on "entries" see https://github.com/petehunt/webpack-howto/) */}
+          {
+            Object.keys(assets.javascript).map((script, i) =>
+              <script src={assets.javascript[script]} key={i} />)
+          }
         </body>
       </html>
     );
@@ -37,6 +57,7 @@ class Html extends Component {
 }
 
 Html.propTypes = {
+  assets: PropTypes.object,
   component: PropTypes.node,
   store: PropTypes.object,
 };

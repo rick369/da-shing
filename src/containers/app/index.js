@@ -14,7 +14,7 @@ class App extends React.Component {
     const isLoggedIn = auth.loggedIn();
     const user = auth.getUser();
     return (
-      <div>
+      <div className="container">
         <Helmet {...config.app.head} />
         <div>
           <Header isLoggedIn={isLoggedIn} user={user} />

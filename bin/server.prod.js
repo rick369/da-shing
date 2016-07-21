@@ -46,9 +46,8 @@ app.use((req, res) => {
             <RouterContext {...renderProps} />
           </Provider>
         );
-
         res.send(
-          renderToString(<Html component={component} store={store} />)
+          renderToString(<Html assets={webpack_isomorphic_tools.assets()} component={component} store={store} />)
         );
       });
 

@@ -30,6 +30,15 @@ const Header = (props) => {
             <li><Link to="/logout" activeStyle={style.linkActive}>Logout</Link></li>
           )
         }
+        <li>
+          <Link
+            to="/font-awesome-icons"
+            activeStyle={style.linkActive}
+          >
+            FontAwesomeIcons
+          </Link>
+        </li>
+        <li><Link to="/card-columns" activeStyle={style.linkActive}>CardColumns</Link></li>
       </ul>
       <p>
         {'Hello, '}

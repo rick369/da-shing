@@ -12,6 +12,8 @@ import Home from './containers/home';
 import About from './containers/about';
 import Login from './containers/login';
 import Logout from './containers/logout';
+import FontAwesomeIcons from './containers/font-awesome-icons';
+import CardColumns from './containers/card-columns';
 import Dashboard from './containers/dashboard';
 import NotFound from './containers/not-found';
 
@@ -34,6 +36,8 @@ const routes = (
     <Route path="about" component={About} />
     <Route path="login" component={Login} />
     <Route path="logout" component={Logout} />
+    <Route path="font-awesome-icons" component={FontAwesomeIcons} />
+    <Route path="card-columns" component={CardColumns} />
     <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     <Route path="*" component={NotFound} />
   </Route>
