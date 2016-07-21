@@ -31,6 +31,9 @@ import store from '../src/store';
 import routes from '../src/routes';
 import Html from '../src/helpers/Html';
 
+global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
+global.__DEVTOOLS__ = false;
+
 app.use((req, res) => {
   // Note that req.url here should be the full URL path from
   // the original request, including the query string.

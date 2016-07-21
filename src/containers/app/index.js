@@ -20,7 +20,9 @@ class App extends React.Component {
           <Header isLoggedIn={isLoggedIn} user={user} />
           {this.props.children}
         </div>
-        {process.env.NODE_ENV === 'development' && <DevTools />}
+        {/* eslint-disable no-undef */}
+        {process.env.NODE_ENV === 'development' && __DEVTOOLS__ && <DevTools />}
+        {/* eslint-enable no-undef */}
       </div>
     );
   }

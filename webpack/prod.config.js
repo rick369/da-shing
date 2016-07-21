@@ -79,7 +79,9 @@ var config = {
       'process.env.HOST': JSON.stringify(process.env.HOST),
       'process.env.PORT': JSON.stringify(process.env.PORT),
       'process.env.APIHOST': JSON.stringify(process.env.APIHOST),
-      'process.env.APIPORT': JSON.stringify(process.env.APIPORT)
+      'process.env.APIPORT': JSON.stringify(process.env.APIPORT),
+      '__DEVELOPMENT__': false,
+      '__DEVTOOLS__': false
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
