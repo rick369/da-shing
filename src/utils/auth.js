@@ -1,5 +1,33 @@
 function pretendRequest(email, pass, cb) {
   setTimeout(() => {
+    if (email !== 'ben@gmail.com' && pass !== 'password') {
+      cb({
+        authenticated: false,
+        error: {
+          email: 'Email does not exist',
+          password: 'Wrong password',
+          _error: 'Login failed!',
+        },
+      });
+    }
+    if (email !== 'ben@gmail.com') {
+      cb({
+        authenticated: false,
+        error: {
+          email: 'Email does not exist',
+          _error: 'Login failed!',
+        },
+      });
+    }
+    if (pass !== 'password') {
+      cb({
+        authenticated: false,
+        error: {
+          password: 'Wrong password',
+          _error: 'Login failed!',
+        },
+      });
+    }
     if (email === 'ben@gmail.com' && pass === 'password') {
       cb({
         authenticated: true,
@@ -8,10 +36,8 @@ function pretendRequest(email, pass, cb) {
         },
         token: Math.random().toString(36).substring(7),
       });
-    } else {
-      cb({ authenticated: false });
     }
-  }, 0);
+  }, 1000); // simulate server latency
 }
 
 const onChange = () => {
@@ -27,10 +53,12 @@ const login = (email, pass, cb) => {
     if (res.authenticated) {
       localStorage.setItem('token', res.token);
       localStorage.setItem('user', JSON.stringify(res.user));
-      if (cb) cb(true, res.user);
+      if (cb) {
+        cb(false, true);
+      }
       onChange(true);
     } else {
-      if (cb) cb(false);
+      if (cb) cb(res.error, false);
       onChange(false);
     }
   });

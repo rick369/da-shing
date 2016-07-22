@@ -9,40 +9,38 @@ import { auth } from '../../utils';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      error: false,
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.submit = this.submit.bind(this);
   }
-  handleSubmit(email, password) {
-    auth.login(email, password, (loggedIn) => {
-      if (!loggedIn) {
-        return this.setState({ error: true });
-      }
+  submit(values) {
+    const { email, password } = values;
+    const { location } = this.props;
 
-      const { location } = this.props;
-      if (location.state && location.state.nextPathname) {
-        this.context.router.replace(location.state.nextPathname);
-      } else {
-        this.context.router.replace('/');
-      }
+    const promise = new Promise((resolve, reject) => {
+      auth.login(email, password, (error, loggedIn) => {
+        if (!loggedIn) {
+          reject(error);
+          return;
+        }
 
-      return false;
+        if (location.state && location.state.nextPathname) {
+          this.context.router.replace(location.state.nextPathname);
+        } else {
+          this.context.router.replace('/');
+        }
+
+        resolve();
+        return;
+      });
     });
+
+    return promise;
   }
   render() {
     return (
       <div>
         <Helmet title="Login" />
         <h2>Login</h2>
-
-        <LoginForm handleSubmit={this.handleSubmit} />
-
-        {
-          this.state.error && (
-            <p>Bad login information</p>
-          )
-        }
+        <LoginForm submit={this.submit} />
       </div>
     );
   }
