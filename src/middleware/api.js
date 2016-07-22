@@ -7,7 +7,19 @@ const api = store => next => action => {
     return next(action);
   }
   const { getState } = store;
-  const { method, url, successType, afterSuccess } = action[CALL_API];
+  const {
+    method,
+    url,
+    requestType,
+    successType,
+    failType,
+    afterSuccess,
+  } = action[CALL_API];
+
+  next({
+    type: requestType,
+  });
+
   const promise = new Promise((resolve, reject) => {
     fetch(url, {
       method,
@@ -19,6 +31,10 @@ const api = store => next => action => {
     .then((response) => response.json())
     .then((json) => {
       if (json.status < 200 || json.status >= 300) {
+        next({
+          type: failType,
+          response: json,
+        });
         reject();
         return;
       }

@@ -17,7 +17,11 @@ class About extends React.Component {
       <div>
         <Helmet title="About Us" />
         <h2>About</h2>
-        <Info data={info.data} />
+        {
+          info.isFetching ?
+            <i className="fa fa-spinner fa-spin"></i> :
+            <Info data={info.data} />
+        }
       </div>
     );
   }

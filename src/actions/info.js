@@ -1,17 +1,19 @@
-import {
-  FETCH_INFO_DATA,
-} from '../constants';
+import constants from '../constants';
 
 import { CALL_API } from '../middleware/api';
 
 import config from '../../config';
+
+const { INFO } = constants;
 
 export function fetchInfoData() {
   return {
     [CALL_API]: {
       method: 'GET',
       url: `http://${config.apiHost}:${config.apiPort}/api/infos`,
-      successType: FETCH_INFO_DATA,
+      requestType: INFO.FETCH_INFO_REQUEST,
+      successType: INFO.FETCH_INFO_SUCCESS,
+      failType: INFO.FETCH_INFO_FAIL,
     },
   };
 }

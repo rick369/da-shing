@@ -22,10 +22,12 @@ router
     data: []
   });
   */
-  res.json({
-    status: 200,
-    data: data,
-  });
+  setTimeout(() => {
+    res.json({
+      status: 200,
+      data: data,
+    });
+  }, 2000);
 });
 
 module.exports = router;
