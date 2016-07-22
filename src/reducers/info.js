@@ -1,28 +1,26 @@
+import Immutable from 'immutable';
+
 import constants from '../constants';
 
 const { INFO } = constants;
 
-const initialState = {
+export const initialState = Immutable.fromJS({
   data: [],
   isFetching: false,
-};
+});
 
 export default function info(state = initialState, action) {
   if (action.type === INFO.FETCH_INFO_REQUEST) {
-    return Object.assign({}, state, {
-      isFetching: true,
-    });
+    return state.set('isFetching', true);
   }
   if (action.type === INFO.FETCH_INFO_SUCCESS) {
-    return Object.assign({}, state, {
+    return state.merge({
       data: action.response.data,
       isFetching: false,
     });
   }
   if (action.type === INFO.FETCH_INFO_FAIL) {
-    return Object.assign({}, state, {
-      isFetching: false,
-    });
+    return state.set('isFetching', false);
   }
   return state;
 }

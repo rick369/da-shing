@@ -37,7 +37,7 @@ About.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    info: state.info,
+    info: state.info.toJS(),
   };
 }
 
