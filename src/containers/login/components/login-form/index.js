@@ -1,6 +1,8 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 
+import Fetching from '../../../../components/fetching';
+
 export const fields = ['email', 'password'];
 
 function LoginForm(props) {
@@ -38,10 +40,7 @@ function LoginForm(props) {
         <button type="submit" disabled={submitting}>
           {
             submitting ?
-              <span>
-                <i className="fa fa-spinner fa-spin"></i>
-                <span className="sr-only">Login</span>
-              </span> :
+              <Fetching /> :
               <span>Log In</span>
           }
         </button>

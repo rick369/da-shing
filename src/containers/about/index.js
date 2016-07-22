@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
 import Info from './components/Info';
+import Fetching from '../../components/fetching';
 
 import { fetchInfoData } from '../../actions/info';
 
@@ -19,7 +20,7 @@ class About extends React.Component {
         <h2>About</h2>
         {
           info.isFetching ?
-            <i className="fa fa-spinner fa-spin"></i> :
+            <Fetching /> :
             <Info data={info.data} />
         }
       </div>
