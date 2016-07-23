@@ -30,7 +30,7 @@ if (typeof localStorage === 'undefined' || localStorage === null) {
   // eslint-disable-next-line global-require
   const LocalStorage = require('node-localstorage').LocalStorage;
   // eslint-disable-next-line no-native-reassign
-  localStorage = new LocalStorage('./scratch');
+  global.localStorage = new LocalStorage('./scratch');
   localStorage.setItem('serverSideRendering', 'true');
 }
 
