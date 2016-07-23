@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+// eslint-disable-next-line new-cap
+const router = express.Router();
 
 router
-.get('/infos', function(req, res, next) {
-  var data = [
+.get('/infos', (req, res) => {
+  const data = [
     {
       id: 1,
       text: 'hello',
@@ -25,7 +26,7 @@ router
   setTimeout(() => {
     res.json({
       status: 200,
-      data: data,
+      data,
     });
   }, 2000);
 });

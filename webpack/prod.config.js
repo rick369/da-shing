@@ -1,28 +1,32 @@
-var webpack = require('webpack');
-var CleanPlugin = require('clean-webpack-plugin');
-var path = require('path');
+const webpack = require('webpack');
+const CleanPlugin = require('clean-webpack-plugin');
+const path = require('path');
 
-var rootDir = path.resolve(__dirname, '..');
-var assetsPath = path.resolve(rootDir, './dist/build');
+const rootDir = path.resolve(__dirname, '..');
+const assetsPath = path.resolve(rootDir, './dist/build');
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-var webpack_isomorphic_tools_plugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools-configuration'));
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 
-var config = {
+/* eslint-disable global-require */
+const webpackIsomorphicToolsPlugin =
+  new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools-configuration'));
+/* eslint-enable global-require */
+
+const config = {
   entry: [
     'font-awesome-loader',
     'bootstrap-loader/extractStyles',
     'tether',
-    './src/router.js'
+    './src/router.js',
   ],
   output: {
-    path: rootDir + '/dist/build',
+    path: `${rootDir}/dist/build`,
     publicPath: '/build/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
@@ -32,11 +36,11 @@ var config = {
         loader: 'babel',
         query: {
           presets: ['es2015', 'react'],
-        }
+        },
       },
       {
         test: /\.jsx?$/,
-        loaders: [ 'babel' ],
+        loaders: ['babel'],
         exclude: /node_modules/,
       },
       {
@@ -60,17 +64,18 @@ var config = {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         // Limiting the size of the woff fonts breaks font-awesome ONLY for the extract text plugin
         // loader: "url?limit=10000"
-        loader: "url"
+        loader: 'url',
       },
       {
         test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
-        loader: 'file'
+        loader: 'file',
       },
       {
-        test: webpack_isomorphic_tools_plugin.regular_expression('images'),
-        loader: 'url-loader?limit=10240', // any image below or equal to 10K will be converted to inline base64 instead
-      }
-    ]
+        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        loader: 'url-loader?limit=10240',
+        // any image below or equal to 10K will be converted to inline base64 instead
+      },
+    ],
   },
   plugins: [
     new CleanPlugin([assetsPath], { root: rootDir }),
@@ -80,19 +85,19 @@ var config = {
       'process.env.PORT': JSON.stringify(process.env.PORT),
       'process.env.APIHOST': JSON.stringify(process.env.APIHOST),
       'process.env.APIPORT': JSON.stringify(process.env.APIPORT),
-      '__DEVELOPMENT__': false,
-      '__DEVTOOLS__': false
+      __DEVELOPMENT__: false,
+      __DEVTOOLS__: false,
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
-      }
+        warnings: false,
+      },
     }),
     new ExtractTextPlugin('app.css', { allChunks: true }),
     new webpack.ProvidePlugin({
-      "window.Tether": "tether"
+      'window.Tether': 'tether',
     }),
-    webpack_isomorphic_tools_plugin,
+    webpackIsomorphicToolsPlugin,
   ],
   postcss: [autoprefixer],
 };

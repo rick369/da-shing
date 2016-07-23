@@ -8,7 +8,7 @@ const app = express();
 
 app.set('port', (process.env.PORT || 3000));
 
-app.use(favicon(rootDir + '/dist/favicon.ico'));
+app.use(favicon(`${rootDir}/dist/favicon.ico`));
 
 import apiRouter from '../api';
 app.use('/api', apiRouter);
@@ -24,18 +24,22 @@ app.use(webpackDevMiddleware(compiler, {
   hot: true,
   inline: true,
   publicPath: webpackConfig.output.publicPath,
-  headers: {'Access-Control-Allow-Origin': '*'}
+  headers: { 'Access-Control-Allow-Origin': '*' },
 }));
 
-app.use(require("webpack-hot-middleware")(compiler, {
+/* eslint-disable no-console */
+app.use(require('webpack-hot-middleware')(compiler, {
   log: console.log,
-  path: '/__webpack_hmr'
+  path: '/__webpack_hmr',
 }));
+/* eslint-enable no-console */
 
-app.use(function(req, res, next) {
-  res.sendFile(rootDir + '/dist/index.html');
+app.use((req, res) => {
+  res.sendFile(`${rootDir}/dist/index.html`);
 });
 
-app.listen(app.get('port'), function() {
+
+app.listen(app.get('port'), () => {
+  // eslint-disable-next-line no-console
   console.log('Node app is running on port', app.get('port'));
 });

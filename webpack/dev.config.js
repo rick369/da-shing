@@ -1,25 +1,28 @@
-var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-var webpack_isomorphic_tools_plugin =
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+
+/* eslint-disable global-require */
+const webpackIsomorphicToolsPlugin =
   new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools-configuration'))
   .development();
+/* eslint-enable global-require */
 
-var config = {
+const config = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
     'tether',
     'font-awesome-loader',
     'bootstrap-loader',
-    './src/router.js'
+    './src/router.js',
   ],
   output: {
-    path: __dirname + '/dist/build',
+    path: `${__dirname}/dist/build`,
     publicPath: '/build/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
@@ -29,7 +32,7 @@ var config = {
         loader: 'babel',
         query: {
           presets: ['es2015', 'react'],
-        }
+        },
       },
       {
         test: /\.jsx?$/,
@@ -55,17 +58,18 @@ var config = {
       },
       {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url?limit=10000"
+        loader: 'url?limit=10000',
       },
       {
         test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
-        loader: 'file'
+        loader: 'file',
       },
       {
-        test: webpack_isomorphic_tools_plugin.regular_expression('images'),
-        loader: 'url-loader?limit=10240', // any image below or equal to 10K will be converted to inline base64 instead
-      }
-    ]
+        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        loader: 'url-loader?limit=10240',
+        // any image below or equal to 10K will be converted to inline base64 instead
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -74,16 +78,16 @@ var config = {
       'process.env.PORT': JSON.stringify(process.env.PORT),
       'process.env.APIHOST': JSON.stringify(process.env.APIHOST),
       'process.env.APIPORT': JSON.stringify(process.env.APIPORT),
-      '__DEVELOPMENT__': true,
-      '__DEVTOOLS__': true  // <-------- DISABLE redux-devtools HERE
+      __DEVELOPMENT__: true,
+      __DEVTOOLS__: true,  // <-------- DISABLE redux-devtools HERE
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
-      "window.Tether": "tether"
+      'window.Tether': 'tether',
     }),
-    webpack_isomorphic_tools_plugin,
+    webpackIsomorphicToolsPlugin,
   ],
   postcss: [autoprefixer],
 };

@@ -9,7 +9,7 @@
     "postinstall": "npm run build",
     "start-prod": "better-npm-run start-prod",
     "start-dev": "better-npm-run start-dev",
-    "lint": "eslint src/**",
+    "lint": "eslint --ignore-path .gitignore **/*.js",
     "lint:watch": "esw src/** --watch",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --require test/.setup.js \"test/**/*-test.js\"",
     "test:watch": "npm run test -- --watch"
