@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 
 import LoginForm from './components/login-form';
 
-import { auth } from '../../utils';
+import { auth, validation } from '../../utils';
 
 class Login extends React.Component {
   constructor(props) {
@@ -16,6 +16,26 @@ class Login extends React.Component {
     const { location } = this.props;
 
     const promise = new Promise((resolve, reject) => {
+      const emailErrorMessage =
+        validation.required(email) || validation.email(email);
+      if (emailErrorMessage) {
+        reject({
+          email: emailErrorMessage,
+          _error: 'Login failed!',
+        });
+        return;
+      }
+
+      const passwordErrorMessage =
+        validation.required(password) || validation.minLength(4)(password) || validation.maxLength(8)(password);
+      if (passwordErrorMessage) {
+        reject({
+          password: passwordErrorMessage,
+          _error: 'Login failed!',
+        });
+        return;
+      }
+
       auth.login(email, password, (error, loggedIn) => {
         if (!loggedIn) {
           reject(error);
