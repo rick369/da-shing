@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 class Html extends Component {
   componentDidMount() {}
   render() {
-    const { assets, component, store } = this.props;
+    const { assets, component, store, i18n } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
 
@@ -37,12 +37,21 @@ class Html extends Component {
         </head>
         <body>
           <div id="app" dangerouslySetInnerHTML={{ __html: content }} />
+
           <script
             dangerouslySetInnerHTML={{
               __html: `window.INITIAL_STATE=${serialize(store.getState())};`,
             }}
             charSet="UTF-8"
           />
+
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.INITIAL_I18N=${serialize(i18n)};`,
+            }}
+            charSet="UTF-8"
+          />
+
           {/* javascripts */}
           {/* (usually one for each "entry" in webpack configuration) */}
           {/* (for more informations on "entries" see https://github.com/petehunt/webpack-howto/) */}
@@ -60,6 +69,7 @@ Html.propTypes = {
   assets: PropTypes.object,
   component: PropTypes.node,
   store: PropTypes.object,
+  i18n: PropTypes.object,
 };
 
 export default Html;

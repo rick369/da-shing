@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "description": "這是初始 Web 的首頁",
+    "og": {
+      "title": "初始 Web",
+      "url": "http://init-project-web.herokuapp.com/",
+      "image": "要顯示的縮圖網址",
+      "description": "這是初始 Web 的首頁"
+    }
+  },
+  "myCat": "我的貓"
+}

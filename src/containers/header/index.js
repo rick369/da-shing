@@ -1,18 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { IndexLink, Link } from 'react-router';
+import { translate } from 'react-i18next';
 
 import style from './style';
+
+import ToggleLanguage from '../toggle-language';
 
 class Header extends React.Component {
   componentDidMount() {}
   render() {
-    const { isLoggedIn, user } = this.props;
+    const { t, isLoggedIn, user } = this.props;
     return (
       <div>
-        <h1><IndexLink to="/">App</IndexLink></h1>
+        <h1><IndexLink to="/">{t('appName')}</IndexLink></h1>
         <ul>
-          <li><IndexLink to="/" activeStyle={style.linkActive}>Home</IndexLink></li>
+          <li><IndexLink to="/" activeStyle={style.linkActive}>{t('nav.home')}</IndexLink></li>
           {
             isLoggedIn && (
               <li>
@@ -47,12 +50,16 @@ class Header extends React.Component {
           {'Hello, '}
           <span className="name">{user.name}</span>
         </p>
+        <div>
+          <ToggleLanguage />
+        </div>
       </div>
     );
   }
-};
+}
 
 Header.propTypes = {
+  t: React.PropTypes.func.isRequired,
   isLoggedIn: React.PropTypes.bool.isRequired,
   user: React.PropTypes.object.isRequired,
 };
@@ -65,7 +72,9 @@ function mapDispatchToProps() {
   return {};
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header);
+export default translate()(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Header)
+);

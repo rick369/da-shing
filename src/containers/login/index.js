@@ -27,7 +27,9 @@ class Login extends React.Component {
       }
 
       const passwordErrorMessage =
-        validation.required(password) || validation.minLength(4)(password) || validation.maxLength(8)(password);
+        validation.required(password) ||
+        validation.minLength(4)(password) ||
+        validation.maxLength(8)(password);
       if (passwordErrorMessage) {
         reject({
           password: passwordErrorMessage,

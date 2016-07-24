@@ -1,6 +1,7 @@
 import express from 'express';
 import favicon from 'serve-favicon';
 import path from 'path';
+import fs from 'fs';
 
 const rootDir = path.resolve(__dirname, '..');
 
@@ -33,6 +34,16 @@ app.use(require('webpack-hot-middleware')(compiler, {
   path: '/__webpack_hmr',
 }));
 /* eslint-enable no-console */
+
+app.get('/locales/**', (req, res) => {
+  const filePath = rootDir + req.path;
+  fs.stat(filePath, (err) => {
+    if (err) {
+      res.status(404).send('Sorry, we cannot find that!');
+    }
+    res.sendFile(filePath);
+  });
+});
 
 app.use((req, res) => {
   res.sendFile(`${rootDir}/dist/index.html`);
