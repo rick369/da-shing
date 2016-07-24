@@ -14,12 +14,12 @@ class Home extends React.Component {
         <Helmet
           title={t('nav.home')}
           meta={[
-            {charset: 'utf-8'},
-            {name: 'description', content: t('home:meta.description')},
-            {property: 'og:title', content: t('home:meta.og.title')},
-            {property: 'og:url', content: t('home:meta.og.url')},
-            {property: 'og:image', content: t('home:meta.og.image')},
-            {property: 'og:description', content: t('home:meta.og.description')},
+            { charset: 'utf-8' },
+            { name: 'description', content: t('home:meta.description') },
+            { property: 'og:title', content: t('home:meta.og.title') },
+            { property: 'og:url', content: t('home:meta.og.url') },
+            { property: 'og:image', content: t('home:meta.og.image') },
+            { property: 'og:description', content: t('home:meta.og.description') },
           ]}
         />
         <h2>{t('nav.home')}</h2>

@@ -9,17 +9,17 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 
-import i18n from './i18n-server';
+import i18n from '../i18n/i18n-server';
 import i18nMiddleware from 'i18next-express-middleware';
 import { I18nextProvider, loadNamespaces } from 'react-i18next';
 
-import store from '../src/store';
-import routes from '../src/routes';
-import Html from '../src/helpers/Html';
+import store from '../store';
+import routes from '../routes';
+import Html from '../helpers/Html';
 
-import apiRouter from '../api';
+import apiRouter from '../../api';
 
-const rootDir = path.resolve(__dirname, '..');
+const rootDir = path.resolve(__dirname, '../..');
 const app = express();
 
 app.set('port', (process.env.PORT || 8080));

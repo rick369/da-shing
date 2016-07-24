@@ -7,8 +7,6 @@ import DevTools from '../DevTools';
 
 import { auth } from '../../utils';
 
-import config from '../../../config';
-
 class App extends React.Component {
   componentDidMount() {}
   render() {
@@ -20,12 +18,12 @@ class App extends React.Component {
         <Helmet
           titleTemplate={`${t('title')} - %s`}
           meta={[
-            {charset: 'utf-8'},
-            {name: 'description', content: t('meta.description')},
-            {property: 'og:title', content: t('meta.og.title')},
-            {property: 'og:url', content: t('meta.og.url')},
-            {property: 'og:image', content: t('meta.og.image')},
-            {property: 'og:description', content: t('meta.og.description')},
+            { charset: 'utf-8' },
+            { name: 'description', content: t('meta.description') },
+            { property: 'og:title', content: t('meta.og.title') },
+            { property: 'og:url', content: t('meta.og.url') },
+            { property: 'og:image', content: t('meta.og.image') },
+            { property: 'og:description', content: t('meta.og.description') },
           ]}
         />
         <div>

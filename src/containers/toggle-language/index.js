@@ -5,7 +5,8 @@ import style from './style.scss';
 
 let i18n;
 if (typeof window !== 'undefined') {
-  i18n = require('../../i18n-client');
+  // eslint-disable-next-line global-require
+  i18n = require('../../i18n/i18n-client');
 } else {
   i18n = null;
 }
@@ -27,7 +28,7 @@ class ToggleLanguage extends React.Component {
   }
   getLinkActiveClassName(lang) {
     if (!i18n) {
-      return;
+      return '';
     }
 
     const currentLang = i18n.language;
