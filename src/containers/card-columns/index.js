@@ -1,16 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { translate } from 'react-i18next';
 
 import style from './style.scss';
 
+@translate(['common', 'cardColumns'])
 class CardColumns extends React.Component {
+  static propTypes = {
+    t: React.PropTypes.func.isRequired,
+  };
   componentDidMount() {}
   render() {
+    const { t } = this.props;
     return (
       <div>
         <Helmet title="Card Columns" />
-        <h2>Font Awesome Icons</h2>
+        <h2>{t('cardColumns:title')}</h2>
         <div className="card-columns">
           <div className="card">
             <div className="card-block">
