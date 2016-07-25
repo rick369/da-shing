@@ -2,9 +2,9 @@
   "meta": {
     "description": "This is Init Web's Home page",
     "og": {
-      "title": "Init Web",
+      "title": "Init Web - Home",
       "url": "http://init-project-web.herokuapp.com/",
-      "image": "要顯示的縮圖網址",
+      "image": "display a thumbnail url",
       "description": "This is Init Web's Home page"
     }
   },

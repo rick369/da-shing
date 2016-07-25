@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import Immutable from 'immutable';
 
 import reducers from './reducers';
 
@@ -24,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const store = (typeof window !== 'undefined') ?
-  createStore(reducers, Immutable.fromJS(window.INITIAL_STATE), enhancer) :
+  createStore(reducers, window.INITIAL_STATE, enhancer) :
   createStore(reducers, enhancer);
 
 export default store;

@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "description": "This is Init Web's About page",
+    "og": {
+      "title": "Init Web - About",
+      "url": "http://init-project-web.herokuapp.com/about",
+      "image": "display a thumbnail url",
+      "description": "This is Init Web's About page"
+    }
+  },
+  "myCat": "My cat"
+}

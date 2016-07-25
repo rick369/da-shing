@@ -2,7 +2,7 @@
   "meta": {
     "description": "这是初始 Web 的首页",
     "og": {
-      "title": "初始 Web",
+      "title": "初始 Web - 首页",
       "url": "http://init-project-web.herokuapp.com/",
       "image": "要显示的缩图网址",
       "description": "这是初始 Web 的首页"

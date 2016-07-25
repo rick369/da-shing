@@ -2,16 +2,17 @@
   "appName": "Init Project Web",
   "title": "Init Web",
   "meta": {
-    "description": "網頁描述",
+    "description": "web description",
     "og": {
-      "title": "網站名稱或標題",
-      "url": "網址",
-      "image": "要顯示的縮圖網址",
-      "description": "網頁描述"
+      "title": "web name or title",
+      "url": "web site url",
+      "image": "display a thumbnail url",
+      "description": "web description"
     }
   },
   "language": "Language",
   "nav": {
-    "home": "Home"
+    "home": "Home",
+    "about": "About"
   }
 }

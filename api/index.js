@@ -2,6 +2,17 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
+// CORS middleware
+const allowCrossDomain = (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+  next();
+};
+
+router.use(allowCrossDomain);
+
 router
 .get('/infos', (req, res) => {
   const data = [

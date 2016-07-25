@@ -2,16 +2,17 @@
   "appName": "初始 Web 专案",
   "title": "初始 Web",
   "meta": {
-    "description": "網頁描述",
+    "description": "网页描述",
     "og": {
-      "title": "網站名稱或標題",
-      "url": "網址",
-      "image": "要顯示的縮圖網址",
-      "description": "網頁描述"
+      "title": "网站名称或标题",
+      "url": "网址",
+      "image": "要显示的缩图网址",
+      "description": "网页描述"
     }
   },
   "language": "语系",
   "nav": {
-    "home": "首页"
+    "home": "首页",
+    "about": "关于我们"
   }
 }

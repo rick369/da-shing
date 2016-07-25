@@ -6,7 +6,7 @@ import fs from 'fs';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
+import { match } from 'react-router';
 import { Provider } from 'react-redux';
 
 import i18n from '../i18n/i18n-server';
@@ -55,6 +55,8 @@ app.get('/locales/**', (req, res) => {
   });
 });
 
+import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
+
 app.use((req, res) => {
   const locale = req.language;
   const resources = i18n.getResourceBundle(locale, 'common');
@@ -66,17 +68,6 @@ app.use((req, res) => {
   // Note that req.url here should be the full URL path from
   // the original request, including the query string.
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
-    function getReduxPromise() {
-      const { query, params } = renderProps;
-      const comp = renderProps.components[renderProps.components.length - 1].WrappedComponent;
-
-      const promise = comp.fetchData ?
-        comp.fetchData({ query, params, store }) :
-        Promise.resolve();
-
-      return promise;
-    }
-
     if (error) {
       res.status(500).send(error.message);
     } else if (redirectLocation) {
@@ -84,11 +75,11 @@ app.use((req, res) => {
     } else if (renderProps) {
       loadNamespaces({ ...renderProps, i18n: i18nServer })
       .then(() => {
-        getReduxPromise().then(() => {
+        loadOnServer({ ...renderProps, store }).then(() => {
           const component = (
             <I18nextProvider i18n={i18nServer}>
               <Provider store={store}>
-                <RouterContext {...renderProps} />
+                <ReduxAsyncConnect {...renderProps} />
               </Provider>
             </I18nextProvider>
           );

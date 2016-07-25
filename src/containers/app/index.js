@@ -7,7 +7,12 @@ import DevTools from '../DevTools';
 
 import { auth } from '../../utils';
 
-class App extends React.Component {
+@translate()
+export default class App extends React.Component {
+  static propTypes = {
+    t: React.PropTypes.func.isRequired,
+    children: React.PropTypes.element.isRequired,
+  };
   componentDidMount() {}
   render() {
     const { t } = this.props;
@@ -37,10 +42,3 @@ class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-  t: React.PropTypes.func.isRequired,
-  children: React.PropTypes.element.isRequired,
-};
-
-export default translate()(App);

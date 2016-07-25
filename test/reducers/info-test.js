@@ -11,8 +11,9 @@ describe("info Reducer", () => {
     const action = {};
     const nextState = info(undefined, action);
     expect(nextState).to.equal(fromJS({
-      data: [],
+      loaded: false,
       isFetching: false,
+      data: [],
     }));
   });
 
@@ -35,8 +36,9 @@ describe("info Reducer", () => {
 
   it('handles FETCH_INFO_SUCCESS', () => {
     const state = fromJS({
-      data: [],
+      loaded: false,
       isFetching: true,
+      data: [],
     });
     const action = {
       type: INFO.FETCH_INFO_SUCCESS,
@@ -47,15 +49,17 @@ describe("info Reducer", () => {
     const nextState = info(state, action);
 
     expect(nextState).to.equal(fromJS({
-      data: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
+      loaded: true,
       isFetching: false,
+      data: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
     }));
   });
 
   it('handles FETCH_INFO_FAIL', () => {
     const state = fromJS({
-      data: [],
+      loaded: false,
       isFetching: true,
+      data: [],
     });
     const action = {
       type: INFO.FETCH_INFO_FAIL,
@@ -63,8 +67,9 @@ describe("info Reducer", () => {
     const nextState = info(state, action);
 
     expect(nextState).to.equal(fromJS({
-      data: [],
+      loaded: false,
       isFetching: false,
+      data: [],
     }));
   });
 
@@ -80,13 +85,15 @@ describe("info Reducer", () => {
     ];
 
     const finalState = actions.reduce(info, fromJS({
-      data: [],
+      loaded: false,
       isFetching: false,
+      data: [],
     }));
 
     expect(finalState).to.equal(fromJS({
+      loaded: true,
+      isFetching: false,
       data: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
-      isFetching: false
     }));
   });
 

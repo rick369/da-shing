@@ -1,11 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { translate } from 'react-i18next';
 
 import kitten from './kitten.jpg';
 
-class Home extends React.Component {
+@translate(['common', 'home'])
+export default class Home extends React.Component {
+  static propTypes = {
+    t: React.PropTypes.func.isRequired,
+  }
   componentDidMount() {}
   render() {
     const { t } = this.props;
@@ -31,22 +34,3 @@ class Home extends React.Component {
     );
   }
 }
-
-Home.propTypes = {
-  t: React.PropTypes.func.isRequired,
-};
-
-function mapStateToProps() {
-  return {};
-}
-
-function mapDispatchToProps() {
-  return {};
-}
-
-export default translate(['common', 'home'])(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Home)
-);
