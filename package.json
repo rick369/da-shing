@@ -41,6 +41,17 @@
       }
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/futureappworker/init-project-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/futureappworker/init-project-web/issues"
+  },
+  "homepage": "https://github.com/futureappworker/init-project-web#readme",
   "engines": {
     "node": "6.2.2"
   },
@@ -57,11 +68,12 @@
     "eslint-plugin-jsx-a11y": "^1.5.3",
     "eslint-plugin-react": "^5.2.2",
     "eslint-watch": "^2.1.11",
+    "immutable": "^3.8.1",
     "jsdom": "^9.2.1",
     "mocha": "^2.5.3",
-    "react": "^15.1.0",
-    "react-addons-test-utils": "^15.1.0",
-    "react-dom": "^15.1.0",
+    "react": "^0.14.2",
+    "react-addons-test-utils": "^0.14.1",
+    "react-dom": "^0.14.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.1",
     "react-router-redux": "^4.0.5",

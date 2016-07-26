@@ -6,12 +6,15 @@ import fs from 'fs';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { match } from 'react-router';
+import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
+import { loadOnServer } from 'redux-async-connect';
 
-import i18n from '../i18n/i18n-server';
 import i18nMiddleware from 'i18next-express-middleware';
 import { I18nextProvider, loadNamespaces } from 'react-i18next';
+
+import i18n from '../i18n/i18n-server';
+import { ns } from '../i18n/initOption';
 
 import store from '../store';
 import routes from '../routes';
@@ -51,9 +54,6 @@ app.get('/locales/**', (req, res) => {
   });
 });
 
-import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
-import { ns } from '../i18n/initOption';
-
 app.use((req, res) => {
   const locale = req.language;
   const resources = ns.map((currentNS) => {
@@ -82,7 +82,7 @@ app.use((req, res) => {
           const component = (
             <I18nextProvider i18n={i18nServer}>
               <Provider store={store}>
-                <ReduxAsyncConnect {...renderProps} />
+                <RouterContext {...renderProps} />
               </Provider>
             </I18nextProvider>
           );
