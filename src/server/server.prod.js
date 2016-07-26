@@ -52,10 +52,17 @@ app.get('/locales/**', (req, res) => {
 });
 
 import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
+import { ns } from '../i18n/initOption';
 
 app.use((req, res) => {
   const locale = req.language;
-  const resources = i18n.getResourceBundle(locale, 'common');
+  const resources = ns.map((currentNS) => {
+    const resource = {
+      ns: currentNS,
+      content: i18n.getResourceBundle(locale, currentNS),
+    };
+    return resource;
+  });
   const i18nClient = { locale, resources };
 
   const i18nServer = i18n.cloneInstance();

@@ -1,8 +1,15 @@
+const ns = [
+  'common',
+  'home',
+  'about',
+  'cardColumns',
+];
+
 const initOption = {
   whitelist: ['en', 'zh-TW', 'zh'], // array of allowed languages
   fallbackLng: 'en', // language to lookup key if not found on set language
 
-  ns: ['common'], // string or array of namespaces
+  ns, // string or array of namespaces
   defaultNS: 'common', // default namespace used if not passed to translation function
 
   debug: false, // logs out more info (console)
