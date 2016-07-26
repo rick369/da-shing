@@ -19,7 +19,7 @@
       "command": "node ./bin/main.js",
       "env": {
         "NODE_ENV": "production",
-        "APIHOST": "init-project-web.herokuapp.com",
+        "APIHOST": "init-project-api.herokuapp.com",
         "APIPORT": 80
       }
     },
@@ -28,14 +28,15 @@
       "env": {
         "NODE_ENV": "development",
         "PORT": 3000,
-        "APIPORT": 3000
+        "APIHOST": "init-project-api.herokuapp.com",
+        "APIPORT": 80
       }
     },
     "build": {
       "command": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
       "env": {
         "NODE_ENV": "production",
-        "APIHOST": "init-project-web.herokuapp.com",
+        "APIHOST": "init-project-api.herokuapp.com",
         "APIPORT": 80
       }
     }

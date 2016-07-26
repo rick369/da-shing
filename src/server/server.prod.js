@@ -17,8 +17,6 @@ import store from '../store';
 import routes from '../routes';
 import Html from '../helpers/Html';
 
-import apiRouter from '../../api';
-
 const rootDir = path.resolve(__dirname, '../..');
 const app = express();
 
@@ -29,8 +27,6 @@ app.use(serveStatic(`${rootDir}/dist`, {
   index: false,
 }));
 app.use(i18nMiddleware.handle(i18n));
-
-app.use('/api', apiRouter);
 
 if (typeof localStorage === 'undefined' || localStorage === null) {
   // eslint-disable-next-line global-require

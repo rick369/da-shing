@@ -11,9 +11,6 @@ app.set('port', (process.env.PORT || 3000));
 
 app.use(favicon(`${rootDir}/dist/favicon.ico`));
 
-import apiRouter from '../../api';
-app.use('/api', apiRouter);
-
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpack from 'webpack';
 import webpackConfig from '../../webpack';

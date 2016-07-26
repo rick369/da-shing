@@ -10,7 +10,7 @@ export function fetchInfoData() {
   return {
     [CALL_API]: {
       method: 'GET',
-      url: `http://${config.apiHost}:${config.apiPort}/api/infos`,
+      url: `http://${config.apiHost}:${config.apiPort}/infos`,
       requestType: INFO.FETCH_INFO_REQUEST,
       successType: INFO.FETCH_INFO_SUCCESS,
       failType: INFO.FETCH_INFO_FAIL,
