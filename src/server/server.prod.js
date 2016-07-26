@@ -89,6 +89,7 @@ app.use((req, res) => {
           res.send(
             renderToString(
               <Html
+                lang={locale}
                 assets={global.webpack_isomorphic_tools.assets()}
                 component={component}
                 store={store}

@@ -3,15 +3,22 @@ import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
 
-class Html extends Component {
+export default class Html extends Component {
+  static propTypes = {
+    lang: PropTypes.string,
+    assets: PropTypes.object,
+    component: PropTypes.node,
+    store: PropTypes.object,
+    i18n: PropTypes.object,
+  };
   componentDidMount() {}
   render() {
-    const { assets, component, store, i18n } = this.props;
+    const { lang, assets, component, store, i18n } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
 
     return (
-      <html lang="en-us">
+      <html lang={lang}>
         <head>
           {head.base.toComponent()}
           {head.title.toComponent()}
@@ -64,12 +71,3 @@ class Html extends Component {
     );
   }
 }
-
-Html.propTypes = {
-  assets: PropTypes.object,
-  component: PropTypes.node,
-  store: PropTypes.object,
-  i18n: PropTypes.object,
-};
-
-export default Html;
