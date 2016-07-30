@@ -2,12 +2,15 @@ import express from 'express';
 import favicon from 'serve-favicon';
 import path from 'path';
 import fs from 'fs';
+import serialize from 'serialize-javascript';
 
 const rootDir = path.resolve(__dirname, '../..');
 
 const app = express();
 
 app.set('port', (process.env.PORT || 3000));
+app.set('views', `${rootDir}/views`);
+app.set('view engine', 'pug');
 
 app.use(favicon(`${rootDir}/dist/favicon.ico`));
 
@@ -42,8 +45,26 @@ app.get('/locales/**', (req, res) => {
   });
 });
 
+import i18nMiddleware from 'i18next-express-middleware';
+
+import i18n from '../i18n/i18n-server';
+import { ns } from '../i18n/initOption';
+app.use(i18nMiddleware.handle(i18n));
+
 app.use((req, res) => {
-  res.sendFile(`${rootDir}/dist/index.html`);
+  const locale = req.language;
+  const resources = ns.map((currentNS) => {
+    const resource = {
+      ns: currentNS,
+      content: i18n.getResourceBundle(locale, currentNS),
+    };
+    return resource;
+  });
+  const i18nClient = { locale, resources };
+
+  res.render('index', {
+    i18n: serialize(i18nClient),
+  });
 });
 
 

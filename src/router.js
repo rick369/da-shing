@@ -14,17 +14,15 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n/i18n-client';
 
-if (process.env.NODE_ENV === 'production') {
-  const resources = window.INITIAL_I18N.resources;
+const resources = window.INITIAL_I18N.resources;
 
-  resources.forEach((resource) => {
-    const ns = resource.ns;
-    const content = resource.content;
-    i18n.addResourceBundle(window.INITIAL_I18N.locale, ns, content, true);
-  });
+resources.forEach((resource) => {
+  const ns = resource.ns;
+  const content = resource.content;
+  i18n.addResourceBundle(window.INITIAL_I18N.locale, ns, content, true);
+});
 
-  i18n.changeLanguage(window.INITIAL_I18N.locale);
-}
+i18n.changeLanguage(window.INITIAL_I18N.locale);
 
 import store from './store';
 
