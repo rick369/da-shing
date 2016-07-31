@@ -31,14 +31,6 @@ app.use(serveStatic(`${rootDir}/dist`, {
 }));
 app.use(i18nMiddleware.handle(i18n));
 
-if (typeof localStorage === 'undefined' || localStorage === null) {
-  // eslint-disable-next-line global-require
-  const LocalStorage = require('node-localstorage').LocalStorage;
-  // eslint-disable-next-line no-native-reassign
-  global.localStorage = new LocalStorage('./scratch');
-  localStorage.setItem('serverSideRendering', 'true');
-}
-
 /* eslint-disable no-underscore-dangle */
 global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
 global.__DEVTOOLS__ = false;

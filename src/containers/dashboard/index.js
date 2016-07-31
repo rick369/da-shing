@@ -2,31 +2,34 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { auth } from '../../utils';
-
-class Dashboard extends React.Component {
-  componentDidMount() {}
-  render() {
-    return (
-      <div>
-        <Helmet title="Dashboard" />
-        <h2>Dashboard</h2>
-        <p>You made it!</p>
-        <p>{auth.getToken()}</p>
-      </div>
-    );
-  }
-}
-
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    user: state.user.toJS(),
+  };
 }
 
 function mapDispatchToProps() {
   return {};
 }
 
-export default connect(
+@connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard);
+)
+export default class Dashboard extends React.Component {
+  static propTypes = {
+    user: React.PropTypes.object.isRequired,
+  };
+  componentDidMount() {}
+  render() {
+    const { user } = this.props;
+    return (
+      <div>
+        <Helmet title="Dashboard" />
+        <h2>Dashboard</h2>
+        <p>You made it!</p>
+        <p>{user.token}</p>
+      </div>
+    );
+  }
+}

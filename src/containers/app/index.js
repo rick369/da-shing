@@ -5,8 +5,6 @@ import { translate } from 'react-i18next';
 import Header from '../header';
 import DevTools from '../DevTools';
 
-import { auth } from '../../utils';
-
 @translate()
 export default class App extends React.Component {
   static propTypes = {
@@ -16,8 +14,7 @@ export default class App extends React.Component {
   componentDidMount() {}
   render() {
     const { t } = this.props;
-    const isLoggedIn = auth.loggedIn();
-    const user = auth.getUser();
+
     return (
       <div className="container">
         <Helmet
@@ -32,7 +29,7 @@ export default class App extends React.Component {
           ]}
         />
         <div>
-          <Header isLoggedIn={isLoggedIn} user={user} />
+          <Header />
           {this.props.children}
         </div>
         {/* eslint-disable no-undef */}

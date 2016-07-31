@@ -9,6 +9,7 @@ const api = store => next => action => {
   const { getState } = store;
   const {
     method,
+    body,
     url,
     requestType,
     successType,
@@ -23,6 +24,7 @@ const api = store => next => action => {
   const promise = new Promise((resolve, reject) => {
     fetch(url, {
       method,
+      body,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

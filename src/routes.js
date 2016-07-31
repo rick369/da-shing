@@ -4,8 +4,6 @@ import {
   IndexRoute,
 } from 'react-router';
 
-import { auth } from './utils';
-
 // containers
 import App from './containers/app';
 import Home from './containers/home';
@@ -22,10 +20,22 @@ function requireAuth(nextState, replace) {
   if (serverSideRendering) {
     return;
   }
-  if (!auth.loggedIn()) {
+  if (!localStorage.getItem('token')) {
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname },
+    });
+  }
+}
+
+function requireNotLoggedIn(nextState, replace) {
+  const serverSideRendering = localStorage.getItem('serverSideRendering');
+  if (serverSideRendering) {
+    return;
+  }
+  if (localStorage.getItem('token')) {
+    replace({
+      pathname: '/',
     });
   }
 }
@@ -34,8 +44,8 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="about" component={About} />
-    <Route path="login" component={Login} />
-    <Route path="logout" component={Logout} />
+    <Route path="login" component={Login} onEnter={requireNotLoggedIn} />
+    <Route path="logout" component={Logout} onEnter={requireAuth} />
     <Route path="font-awesome-icons" component={FontAwesomeIcons} />
     <Route path="card-columns" component={CardColumns} />
     <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />

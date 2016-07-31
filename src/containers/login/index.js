@@ -4,16 +4,42 @@ import Helmet from 'react-helmet';
 
 import LoginForm from './components/login-form';
 
-import { auth, validation } from '../../utils';
+import { validation } from '../../utils';
 
-class Login extends React.Component {
+import { formLogin, loginSuccess } from '../../actions/user';
+
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onLoginSuccess: (user, token) => {
+      dispatch(loginSuccess(user, token));
+    },
+  };
+}
+
+@connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
+export default class Login extends React.Component {
+  static propTypes = {
+    location: React.PropTypes.any.isRequired,
+    onLoginSuccess: React.PropTypes.func.isRequired,
+  };
+  static contextTypes = {
+    router: React.PropTypes.any.isRequired,
+  };
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
   }
   submit(values) {
     const { email, password } = values;
-    const { location } = this.props;
+    const { location, onLoginSuccess } = this.props;
+    const { router } = this.context;
 
     const promise = new Promise((resolve, reject) => {
       const emailErrorMessage =
@@ -38,20 +64,23 @@ class Login extends React.Component {
         return;
       }
 
-      auth.login(email, password, (error, loggedIn) => {
-        if (!loggedIn) {
-          reject(error);
-          return;
-        }
+      formLogin(email, password)
+      .then((response) => {
+        const { user, token } = response;
+
+        onLoginSuccess(user, token);
 
         if (location.state && location.state.nextPathname) {
-          this.context.router.replace(location.state.nextPathname);
+          router.replace(location.state.nextPathname);
         } else {
-          this.context.router.replace('/');
+          router.replace('/');
         }
 
         resolve();
         return;
+      })
+      .catch((error) => {
+        reject(error);
       });
     });
 
@@ -67,25 +96,3 @@ class Login extends React.Component {
     );
   }
 }
-
-Login.propTypes = {
-  location: React.PropTypes.any,
-  router: React.PropTypes.any,
-};
-
-Login.contextTypes = {
-  router: React.PropTypes.any,
-};
-
-function mapStateToProps() {
-  return {};
-}
-
-function mapDispatchToProps() {
-  return {};
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);

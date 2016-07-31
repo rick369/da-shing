@@ -7,17 +7,36 @@ import style from './style';
 
 import ToggleLanguage from '../toggle-language';
 
-class Header extends React.Component {
+function mapStateToProps(state) {
+  return {
+    user: state.user.toJS(),
+  };
+}
+
+function mapDispatchToProps() {
+  return {};
+}
+
+@connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
+@translate()
+export default class Header extends React.Component {
+  static propTypes = {
+    t: React.PropTypes.func.isRequired,
+    user: React.PropTypes.object.isRequired,
+  };
   componentDidMount() {}
   render() {
-    const { t, isLoggedIn, user } = this.props;
+    const { t, user } = this.props;
     return (
       <div>
         <h1><IndexLink to="/">{t('appName')}</IndexLink></h1>
         <ul>
           <li><IndexLink to="/" activeStyle={style.linkActive}>{t('nav.home')}</IndexLink></li>
           {
-            isLoggedIn && (
+            user.isLoggedIn && (
               <li>
                 <Link to="/dashboard" activeStyle={style.linkActive}>
                   Dashboard
@@ -27,12 +46,12 @@ class Header extends React.Component {
           }
           <li><Link to="/about" activeStyle={style.linkActive}>About</Link></li>
           {
-            !isLoggedIn && (
+            !user.isLoggedIn && (
               <li><Link to="/login" activeStyle={style.linkActive}>Login</Link></li>
             )
           }
           {
-            isLoggedIn && (
+            user.isLoggedIn && (
               <li><Link to="/logout" activeStyle={style.linkActive}>Logout</Link></li>
             )
           }
@@ -57,24 +76,3 @@ class Header extends React.Component {
     );
   }
 }
-
-Header.propTypes = {
-  t: React.PropTypes.func.isRequired,
-  isLoggedIn: React.PropTypes.bool.isRequired,
-  user: React.PropTypes.object.isRequired,
-};
-
-function mapStateToProps() {
-  return {};
-}
-
-function mapDispatchToProps() {
-  return {};
-}
-
-export default translate()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Header)
-);
