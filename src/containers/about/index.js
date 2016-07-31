@@ -61,7 +61,7 @@ export default class About extends React.Component {
         {
           info.isFetching ?
             <Fetching /> :
-            <Info data={info.data} />
+            <Info items={info.items} />
         }
       </div>
     );

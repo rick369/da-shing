@@ -7,15 +7,15 @@ import Info from '../../../../src/containers/about/components/Info';
 
 describe("About's Info Component", function() {
   it("should is info class", function() {
-    expect(shallow(<Info data={[]} />).is('.info')).to.equal(true);
+    expect(shallow(<Info items={[]} />).is('.info')).to.equal(true);
   });
 
   it('allows us to set props', () => {
-    let data = [];
-    const wrapper = mount(<Info data={data} />);
-    expect(wrapper.props().data).to.equal(data);
-    data = [{id: 1, text: 'hello'}];
-    wrapper.setProps({ data: data });
-    expect(wrapper.props().data).to.equal(data);
+    let items = [];
+    const wrapper = mount(<Info items={items} />);
+    expect(wrapper.props().items).to.equal(items);
+    items = [{id: 1, text: 'hello'}];
+    wrapper.setProps({ items: items });
+    expect(wrapper.props().items).to.equal(items);
   });
 });

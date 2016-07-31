@@ -7,7 +7,7 @@ const { INFO } = constants;
 export const initialState = Immutable.fromJS({
   loaded: false,
   isFetching: false,
-  data: [],
+  items: [],
 });
 
 export default function info(state = initialState, action) {
@@ -25,7 +25,7 @@ export default function info(state = initialState, action) {
     return state.merge({
       loaded: true,
       isFetching: false,
-      data: action.response.data,
+      items: action.response.items,
     });
   }
   if (action.type === INFO.FETCH_INFO_FAIL) {

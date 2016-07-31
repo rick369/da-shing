@@ -13,13 +13,13 @@ describe("info Reducer", () => {
     expect(nextState).to.equal(fromJS({
       loaded: false,
       isFetching: false,
-      data: [],
+      items: [],
     }));
   });
 
   it('handles FETCH_INFO_REQUEST', () => {
     const state = fromJS({
-      data: [],
+      items: [],
       isFetching: false,
     });
 
@@ -29,7 +29,7 @@ describe("info Reducer", () => {
     const nextState = info(state, action);
 
     expect(nextState).to.equal(fromJS({
-      data: [],
+      items: [],
       isFetching: true,
     }));
   });
@@ -38,12 +38,12 @@ describe("info Reducer", () => {
     const state = fromJS({
       loaded: false,
       isFetching: true,
-      data: [],
+      items: [],
     });
     const action = {
       type: INFO.FETCH_INFO_SUCCESS,
       response: {
-        data: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }]
+        items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }]
       }
     };
     const nextState = info(state, action);
@@ -51,7 +51,7 @@ describe("info Reducer", () => {
     expect(nextState).to.equal(fromJS({
       loaded: true,
       isFetching: false,
-      data: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
+      items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
     }));
   });
 
@@ -59,7 +59,7 @@ describe("info Reducer", () => {
     const state = fromJS({
       loaded: false,
       isFetching: true,
-      data: [],
+      items: [],
     });
     const action = {
       type: INFO.FETCH_INFO_FAIL,
@@ -69,7 +69,7 @@ describe("info Reducer", () => {
     expect(nextState).to.equal(fromJS({
       loaded: false,
       isFetching: false,
-      data: [],
+      items: [],
     }));
   });
 
@@ -79,7 +79,7 @@ describe("info Reducer", () => {
       {
         type: INFO.FETCH_INFO_SUCCESS,
         response: {
-          data: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }]
+          items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }]
         }
       }
     ];
@@ -87,13 +87,13 @@ describe("info Reducer", () => {
     const finalState = actions.reduce(info, fromJS({
       loaded: false,
       isFetching: false,
-      data: [],
+      items: [],
     }));
 
     expect(finalState).to.equal(fromJS({
       loaded: true,
       isFetching: false,
-      data: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
+      items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
     }));
   });
 
