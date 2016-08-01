@@ -1,28 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-
-class NotFound extends React.Component {
-  componentDidMount() {}
-  render() {
-    return (
-      <div>
-        <Helmet title="Not Found" />
-        <h2>Not Found</h2>
-      </div>
-    );
-  }
-}
+import { translate } from 'react-i18next';
 
 function mapStateToProps() {
   return {};
 }
-
 function mapDispatchToProps() {
   return {};
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NotFound);
+@connect(
+ mapStateToProps,
+ mapDispatchToProps
+)
+@translate()
+export default class NotFound extends React.Component {
+  static propTypes = {
+    t: React.PropTypes.func.isRequired,
+  };
+  componentDidMount() {}
+  render() {
+    const { t } = this.props;
+    return (
+      <div>
+        <Helmet title="Not Found" />
+        <h2>{t('notFount')}</h2>
+      </div>
+    );
+  }
+}

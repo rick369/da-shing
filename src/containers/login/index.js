@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { translate } from 'react-i18next';
 
 import LoginForm from './components/login-form';
 
@@ -24,8 +25,10 @@ function mapDispatchToProps(dispatch) {
   mapStateToProps,
   mapDispatchToProps
 )
+@translate()
 export default class Login extends React.Component {
   static propTypes = {
+    t: React.PropTypes.func.isRequired,
     location: React.PropTypes.any.isRequired,
     onLoginSuccess: React.PropTypes.func.isRequired,
   };
@@ -87,10 +90,11 @@ export default class Login extends React.Component {
     return promise;
   }
   render() {
+    const { t } = this.props;
     return (
       <div>
         <Helmet title="Login" />
-        <h2>Login</h2>
+        <h2>{t('nav.logint')}</h2>
         <LoginForm submit={this.submit} />
       </div>
     );

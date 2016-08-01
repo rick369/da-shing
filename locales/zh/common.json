@@ -13,6 +13,16 @@
   "language": "语系",
   "nav": {
     "home": "首页",
-    "about": "关于我们"
+    "about": "关于我们",
+    "dashboart": "仪表板",
+    "fontAwesomeIcons": "字形 Awesome Icons",
+    "logint": "登录",
+    "logout": "登出"
+  },
+  "email": "电子邮件",
+  "password": "密码",
+  "notFount": "未找到",
+  "btn": {
+    "login": "登录"
   }
 }

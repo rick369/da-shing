@@ -3,6 +3,8 @@ const ns = [
   'home',
   'about',
   'cardColumns',
+  'dashboard',
+  'logout',
 ];
 
 const initOption = {

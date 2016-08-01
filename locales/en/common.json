@@ -13,6 +13,16 @@
   "language": "Language",
   "nav": {
     "home": "Home",
-    "about": "About"
+    "about": "About",
+    "dashboart": "Dashboart",
+    "fontAwesomeIcons": "Font Awesome Icons",
+    "logint": "Logint",
+    "logout": "Logout"
+  },
+  "email": "Email",
+  "password": "Password",
+  "notFount": "Not Found",
+  "btn": {
+    "login": "Log In"
   }
 }

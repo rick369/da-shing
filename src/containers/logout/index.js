@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
+import { translate } from 'react-i18next';
 
 import { logout } from '../../actions/user';
 
@@ -20,8 +21,10 @@ function mapDispatchToProps(dispatch) {
   mapStateToProps,
   mapDispatchToProps
 )
+@translate(['common', 'logout'])
 export default class Logout extends React.Component {
   static propTypes = {
+    t: React.PropTypes.func.isRequired,
     onLogout: React.PropTypes.func.isRequired,
   };
   static contextTypes = {
@@ -34,11 +37,12 @@ export default class Logout extends React.Component {
     router.replace('/');
   }
   render() {
+    const { t } = this.props;
     return (
       <div>
         <Helmet title="Logout" />
-        <h2>Logout</h2>
-        <p>You are now logged out</p>
+        <h2>{t('nav.logout')}</h2>
+        <p>{t('logout:loggedOut')}</p>
       </div>
     );
   }
