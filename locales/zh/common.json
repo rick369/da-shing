@@ -22,6 +22,7 @@
   "email": "电子邮件",
   "password": "密码",
   "notFount": "未找到",
+  "info": "信息",
   "btn": {
     "login": "登录"
   }

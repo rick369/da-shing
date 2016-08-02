@@ -22,6 +22,7 @@
   "email": "Email",
   "password": "Password",
   "notFount": "Not Found",
+  "info": "Information",
   "btn": {
     "login": "Log In"
   }

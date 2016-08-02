@@ -22,6 +22,7 @@
   "email": "電子郵件",
   "password": "密碼",
   "notFount": "未找到",
+  "info": "信息",
   "btn": {
     "login": "登錄"
   }

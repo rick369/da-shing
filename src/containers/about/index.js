@@ -57,7 +57,7 @@ export default class About extends React.Component {
             { property: 'og:description', content: t('about:meta.og.description') },
           ]}
         />
-        <h2>About</h2>
+        <h2>{t('nav.about')}</h2>
         {
           info.isFetching ?
             <Fetching /> :
