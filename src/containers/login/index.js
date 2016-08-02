@@ -92,11 +92,11 @@ export default class Login extends React.Component {
   render() {
     const { t } = this.props;
     return (
-      <div>
+      <section>
         <Helmet title="Login" />
         <h2>{t('nav.logint')}</h2>
         <LoginForm submit={this.submit} />
-      </div>
+      </section>
     );
   }
 }

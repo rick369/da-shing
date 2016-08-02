@@ -45,7 +45,7 @@ export default class About extends React.Component {
   render() {
     const { t, info } = this.props;
     return (
-      <div>
+      <section>
         <Helmet
           title={t('nav.about')}
           meta={[
@@ -63,7 +63,7 @@ export default class About extends React.Component {
             <Fetching /> :
             <Info items={info.items} />
         }
-      </div>
+      </section>
     );
   }
 }

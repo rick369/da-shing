@@ -13,7 +13,7 @@ export default class Home extends React.Component {
   render() {
     const { t } = this.props;
     return (
-      <div>
+      <section>
         <Helmet
           title={t('nav.home')}
           meta={[
@@ -30,7 +30,7 @@ export default class Home extends React.Component {
           <h3>{t('home:myCat')}</h3>
           <img src={kitten} alt="kitten" />
         </div>
-      </div>
+      </section>
     );
   }
 }

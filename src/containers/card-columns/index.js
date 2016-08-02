@@ -14,7 +14,7 @@ class CardColumns extends React.Component {
   render() {
     const { t } = this.props;
     return (
-      <div>
+      <section>
         <Helmet title="Card Columns" />
         <h2>{t('cardColumns:title')}</h2>
         <div className="card-columns">
@@ -114,7 +114,7 @@ class CardColumns extends React.Component {
             </p>
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 }

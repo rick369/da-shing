@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IndexLink, Link } from 'react-router';
 import { translate } from 'react-i18next';
-
-import style from './style';
+import { IndexLink } from 'react-router';
 
 import ToggleLanguage from '../toggle-language';
+
+import Nav from './components/nav';
 
 function mapStateToProps(state) {
   return {
@@ -31,40 +31,9 @@ export default class Header extends React.Component {
   render() {
     const { t, user } = this.props;
     return (
-      <div>
+      <header>
         <h1><IndexLink to="/">{t('appName')}</IndexLink></h1>
-        <ul>
-          <li><IndexLink to="/" activeStyle={style.linkActive}>{t('nav.home')}</IndexLink></li>
-          {
-            user.isLoggedIn && (
-              <li>
-                <Link to="/dashboard" activeStyle={style.linkActive}>
-                  Dashboard
-                </Link>
-              </li>
-            )
-          }
-          <li><Link to="/about" activeStyle={style.linkActive}>About</Link></li>
-          {
-            !user.isLoggedIn && (
-              <li><Link to="/login" activeStyle={style.linkActive}>Login</Link></li>
-            )
-          }
-          {
-            user.isLoggedIn && (
-              <li><Link to="/logout" activeStyle={style.linkActive}>Logout</Link></li>
-            )
-          }
-          <li>
-            <Link
-              to="/font-awesome-icons"
-              activeStyle={style.linkActive}
-            >
-              FontAwesomeIcons
-            </Link>
-          </li>
-          <li><Link to="/card-columns" activeStyle={style.linkActive}>CardColumns</Link></li>
-        </ul>
+        <Nav user={user} />
         <p>
           {'Hello, '}
           <span className="name">{user.name}</span>
@@ -72,7 +41,7 @@ export default class Header extends React.Component {
         <div>
           <ToggleLanguage />
         </div>
-      </div>
+      </header>
     );
   }
 }

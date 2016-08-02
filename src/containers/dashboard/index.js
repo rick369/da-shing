@@ -28,12 +28,12 @@ export default class Dashboard extends React.Component {
   render() {
     const { user, t } = this.props;
     return (
-      <div>
+      <section>
         <Helmet title="Dashboard" />
         <h2>{t('nav.dashboart')}</h2>
         <p>{t('dashboard:youMadeIt')}</p>
         <p>{user.token}</p>
-      </div>
+      </section>
     );
   }
 }

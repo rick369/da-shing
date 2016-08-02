@@ -39,11 +39,11 @@ export default class Logout extends React.Component {
   render() {
     const { t } = this.props;
     return (
-      <div>
+      <section>
         <Helmet title="Logout" />
         <h2>{t('nav.logout')}</h2>
         <p>{t('logout:loggedOut')}</p>
-      </div>
+      </section>
     );
   }
 }

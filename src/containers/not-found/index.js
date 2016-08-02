@@ -23,10 +23,10 @@ export default class NotFound extends React.Component {
   render() {
     const { t } = this.props;
     return (
-      <div>
+      <section>
         <Helmet title="Not Found" />
         <h2>{t('notFount')}</h2>
-      </div>
+      </section>
     );
   }
 }
