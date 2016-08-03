@@ -5,17 +5,27 @@ import { translate } from 'react-i18next';
 export default class Info extends React.Component {
   static propTypes = {
     items: React.PropTypes.array.isRequired,
+    errorMessage: React.PropTypes.string.isRequired,
     t: React.PropTypes.func.isRequired,
   };
   componentDidMount() {}
   render() {
-    const { items, t } = this.props;
+    const { items, errorMessage, t } = this.props;
     return (
       <div className="info">
         <h3>{t('info')}</h3>
         {
-          items.map((item) => <li key={`info-${item.id}`}>{item.text}</li>)
+          errorMessage && (
+            <p>
+              Error : {errorMessage}
+            </p>
+          )
         }
+        <ul>
+          {
+            items.map((item) => <li key={`info-${item.id}`}>{item.text}</li>)
+          }
+        </ul>
       </div>
     );
   }

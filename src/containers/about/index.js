@@ -1,36 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { asyncConnect } from 'redux-async-connect';
 import { translate } from 'react-i18next';
 
-import Info from './components/Info';
-import Fetching from '../../components/fetching';
-
-import { fetchInfoData } from '../../actions/info';
-
-function mapStateToProps(state) {
-  return {
-    info: state.info.toJS(),
-  };
+function mapStateToProps() {
+  return {};
 }
 
 function mapDispatchToProps() {
   return {};
 }
 
-@asyncConnect([{
-  deferred: true,
-  promise: ({ store: { dispatch, getState } }) => {
-    const promises = [];
-
-    if (!getState().info.toJS().loaded) {
-      promises.push(dispatch(fetchInfoData()));
-    }
-
-    return Promise.all(promises);
-  },
-}])
 @connect(
   mapStateToProps,
   mapDispatchToProps
@@ -39,11 +19,10 @@ function mapDispatchToProps() {
 export default class About extends React.Component {
   static propTypes = {
     t: React.PropTypes.func.isRequired,
-    info: React.PropTypes.object.isRequired,
   };
   componentDidMount() {}
   render() {
-    const { t, info } = this.props;
+    const { t } = this.props;
     return (
       <section>
         <Helmet
@@ -58,11 +37,6 @@ export default class About extends React.Component {
           ]}
         />
         <h2>{t('nav.about')}</h2>
-        {
-          info.isFetching ?
-            <Fetching /> :
-            <Info items={info.items} />
-        }
       </section>
     );
   }

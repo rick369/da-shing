@@ -11,9 +11,10 @@ describe("info Reducer", () => {
     const action = {};
     const nextState = info(undefined, action);
     expect(nextState).to.equal(fromJS({
-      loaded: false,
+      isloaded: false,
       isFetching: false,
       items: [],
+      errorMessage: '',
     }));
   });
 
@@ -36,7 +37,7 @@ describe("info Reducer", () => {
 
   it('handles FETCH_INFO_SUCCESS', () => {
     const state = fromJS({
-      loaded: false,
+      isloaded: false,
       isFetching: true,
       items: [],
     });
@@ -49,27 +50,35 @@ describe("info Reducer", () => {
     const nextState = info(state, action);
 
     expect(nextState).to.equal(fromJS({
-      loaded: true,
+      isloaded: true,
       isFetching: false,
       items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
+      errorMessage: '',
     }));
   });
 
   it('handles FETCH_INFO_FAIL', () => {
     const state = fromJS({
-      loaded: false,
+      isloaded: false,
       isFetching: true,
       items: [],
+      errorMessage: '',
     });
     const action = {
       type: INFO.FETCH_INFO_FAIL,
+      response: {
+        error: {
+          message: 'Unauthorized'
+        },
+      },
     };
     const nextState = info(state, action);
 
     expect(nextState).to.equal(fromJS({
-      loaded: false,
+      isloaded: false,
       isFetching: false,
       items: [],
+      errorMessage: 'Unauthorized',
     }));
   });
 
@@ -85,15 +94,17 @@ describe("info Reducer", () => {
     ];
 
     const finalState = actions.reduce(info, fromJS({
-      loaded: false,
+      isloaded: false,
       isFetching: false,
       items: [],
+      errorMessage: '',
     }));
 
     expect(finalState).to.equal(fromJS({
-      loaded: true,
+      isloaded: true,
       isFetching: false,
       items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
+      errorMessage: '',
     }));
   });
 

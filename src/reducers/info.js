@@ -5,9 +5,10 @@ import constants from '../constants';
 const { INFO } = constants;
 
 export const initialState = Immutable.fromJS({
-  loaded: false,
+  isloaded: false,
   isFetching: false,
   items: [],
+  errorMessage: '',
 });
 
 export default function info(state = initialState, action) {
@@ -23,15 +24,17 @@ export default function info(state = initialState, action) {
   }
   if (action.type === INFO.FETCH_INFO_SUCCESS) {
     return state.merge({
-      loaded: true,
+      isloaded: true,
       isFetching: false,
       items: action.response.items,
+      errorMessage: '',
     });
   }
   if (action.type === INFO.FETCH_INFO_FAIL) {
     return state.merge({
-      loaded: false,
+      isloaded: false,
       isFetching: false,
+      errorMessage: action.response.error.message,
     });
   }
   return state;

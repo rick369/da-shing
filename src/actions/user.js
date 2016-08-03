@@ -46,6 +46,9 @@ export function formLogin(email, password) {
       }
 
       resolve(response);
+    })
+    .catch(error => {
+      reject(error);
     });
   });
   return promise;

@@ -7,6 +7,9 @@ const api = store => next => action => {
     return next(action);
   }
   const { getState } = store;
+
+  const user = getState().user.toJS();
+
   const {
     method,
     body,
@@ -21,14 +24,22 @@ const api = store => next => action => {
     type: requestType,
   });
 
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise((resolve) => {
+    // performs api calls sending the required authentication headers
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    // if logged in, includes the authorization header
+    if (user.isLoggedIn) {
+      headers.Authorization = `Bearer ${user.token}`;
+    }
+
     fetch(url, {
       method,
       body,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
+      headers,
     })
     .then((response) => response.json())
     .then((json) => {
@@ -37,7 +48,7 @@ const api = store => next => action => {
           type: failType,
           response: json,
         });
-        reject();
+        resolve();
         return;
       }
       if (afterSuccess) {
