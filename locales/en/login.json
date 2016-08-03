@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "description": "This is Init Web's Login page",
+    "og": {
+      "title": "Init Web - Login",
+      "url": "http://init-project-web.herokuapp.com/login",
+      "image": "display a thumbnail url",
+      "description": "This is Init Web's Login page"
+    }
+  }
+}

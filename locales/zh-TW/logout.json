@@ -1,3 +1,12 @@
 {
-  "loggedOut": "現在，您已經登出" 
+  "meta": {
+    "description": "这是初始 Web 的登出",
+    "og": {
+      "title": "初始 Web - 登出",
+      "url": "http://init-project-web.herokuapp.com/logout",
+      "image": "要顯示的縮圖網址",
+      "description": "這是初始 Web 的登出"
+    }
+  },
+  "loggedOut": "現在，您已經登出"
 }

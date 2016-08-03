@@ -1,3 +1,12 @@
 {
+  "meta": {
+    "description": "这是初始 Web 的登出",
+    "og": {
+      "title": "初始 Web - 登出",
+      "url": "http://init-project-web.herokuapp.com/logout",
+      "image": "要显示的缩图网址",
+      "description": "这是初始 Web 的登出"
+    }
+  },
   "loggedOut": "现在，您已经登出"
 }

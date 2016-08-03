@@ -40,7 +40,17 @@ export default class Logout extends React.Component {
     const { t } = this.props;
     return (
       <section>
-        <Helmet title="Logout" />
+        <Helmet
+          title={t('nav.logout')}
+          meta={[
+            { charset: 'utf-8' },
+            { name: 'description', content: t('logout:meta.description') },
+            { property: 'og:title', content: t('logout:meta.og.title') },
+            { property: 'og:url', content: t('logout:meta.og.url') },
+            { property: 'og:image', content: t('logout:meta.og.image') },
+            { property: 'og:description', content: t('logout:meta.og.description') },
+          ]}
+        />
         <h2>{t('nav.logout')}</h2>
         <p>{t('logout:loggedOut')}</p>
       </section>

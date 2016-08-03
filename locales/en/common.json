@@ -16,8 +16,9 @@
     "about": "About",
     "dashboart": "Dashboart",
     "fontAwesomeIcons": "Font Awesome Icons",
-    "logint": "Logint",
-    "logout": "Logout"
+    "login": "Login",
+    "logout": "Logout",
+    "cardColumns": "Card Columns"
   },
   "email": "Email",
   "password": "Password",

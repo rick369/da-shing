@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "description": "This is Init Web's fontAwesomeIcons page",
+    "og": {
+      "title": "Init Web - fontAwesomeIcons",
+      "url": "http://init-project-web.herokuapp.com/font-awesome-icons",
+      "image": "display a thumbnail url",
+      "description": "This is Init Web's fontAwesomeIcons page"
+    }
+  }
+}

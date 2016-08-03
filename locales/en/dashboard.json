@@ -1,3 +1,12 @@
 {
-  "youMadeIt": "You made it!"  
+  "meta": {
+    "description": "This is Init Web's dashboard page",
+    "og": {
+      "title": "Init Web - Dashboard",
+      "url": "http://init-project-web.herokuapp.com/dashboard",
+      "image": "display a thumbnail url",
+      "description": "This is Init Web's Dashboard page"
+    }
+  },
+  "youMadeIt": "You made it!"
 }

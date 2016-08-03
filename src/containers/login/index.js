@@ -25,7 +25,7 @@ function mapDispatchToProps(dispatch) {
   mapStateToProps,
   mapDispatchToProps
 )
-@translate()
+@translate(['common', 'login'])
 export default class Login extends React.Component {
   static propTypes = {
     t: React.PropTypes.func.isRequired,
@@ -93,8 +93,18 @@ export default class Login extends React.Component {
     const { t } = this.props;
     return (
       <section>
-        <Helmet title="Login" />
-        <h2>{t('nav.logint')}</h2>
+        <Helmet
+          title={t('nav.login')}
+          meta={[
+            { charset: 'utf-8' },
+            { name: 'description', content: t('login:meta.description') },
+            { property: 'og:title', content: t('login:meta.og.title') },
+            { property: 'og:url', content: t('login:meta.og.url') },
+            { property: 'og:image', content: t('login:meta.og.image') },
+            { property: 'og:description', content: t('login:meta.og.description') },
+          ]}
+        />
+        <h2>{t('nav.login')}</h2>
         <LoginForm submit={this.submit} />
       </section>
     );

@@ -48,7 +48,17 @@ export default class Dashboard extends React.Component {
     const { user, info, t } = this.props;
     return (
       <section>
-        <Helmet title="Dashboard" />
+      <Helmet
+        title={t('nav.dashboart')}
+        meta={[
+          { charset: 'utf-8' },
+          { name: 'description', content: t('dashboart:meta.description') },
+          { property: 'og:title', content: t('dashboart:meta.og.title') },
+          { property: 'og:url', content: t('dashboart:meta.og.url') },
+          { property: 'og:image', content: t('dashboart:meta.og.image') },
+          { property: 'og:description', content: t('dashboart:meta.og.description') },
+        ]}
+      />
         <h2>{t('nav.dashboart')}</h2>
         <p>{t('dashboard:youMadeIt')}</p>
         <p>{user.token}</p>

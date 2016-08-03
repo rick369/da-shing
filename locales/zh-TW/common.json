@@ -7,7 +7,8 @@
       "title": "網站名稱或標題",
       "url": "網址",
       "image": "要顯示的縮圖網址",
-      "description": "網頁描述"
+      "description": "網頁描述",
+      "cardColumns": "卡片欄"
     }
   },
   "language": "語系",
@@ -16,7 +17,7 @@
     "about": "關於我們",
     "dashboart": "儀表板",
     "fontAwesomeIcons": "字形 Awesome Icons",
-    "logint": "登錄",
+    "login": "登錄",
     "logout": "登出"
   },
   "email": "電子郵件",

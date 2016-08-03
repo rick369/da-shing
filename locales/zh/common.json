@@ -7,7 +7,8 @@
       "title": "网站名称或标题",
       "url": "网址",
       "image": "要显示的缩图网址",
-      "description": "网页描述"
+      "description": "网页描述",
+      "cardColumns": "卡片栏"
     }
   },
   "language": "语系",
@@ -16,7 +17,7 @@
     "about": "关于我们",
     "dashboart": "仪表板",
     "fontAwesomeIcons": "字形 Awesome Icons",
-    "logint": "登录",
+    "login": "登录",
     "logout": "登出"
   },
   "email": "电子邮件",

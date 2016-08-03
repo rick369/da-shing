@@ -15,8 +15,18 @@ class CardColumns extends React.Component {
     const { t } = this.props;
     return (
       <section>
-        <Helmet title="Card Columns" />
-        <h2>{t('cardColumns:title')}</h2>
+        <Helmet
+          title={t('nav.cardColumns')}
+          meta={[
+            { charset: 'utf-8' },
+            { name: 'description', content: t('cardColumns:meta.description') },
+            { property: 'og:title', content: t('cardColumns:meta.og.title') },
+            { property: 'og:url', content: t('cardColumns:meta.og.url') },
+            { property: 'og:image', content: t('cardColumns:meta.og.image') },
+            { property: 'og:description', content: t('cardColumns:meta.og.description') },
+          ]}
+        />
+        <h2>{t('nav.cardColumns')}</h2>
         <div className="card-columns">
           <div className="card">
             <div className="card-block">

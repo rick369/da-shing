@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "description": "这是初始 Web 的登录",
+    "og": {
+      "title": "初始 Web - 登录",
+      "url": "http://init-project-web.herokuapp.com/login",
+      "image": "要显示的缩图网址",
+      "description": "这是初始 Web 的登录"
+    }
+  }
+}

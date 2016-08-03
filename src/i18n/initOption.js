@@ -5,6 +5,9 @@ const ns = [
   'cardColumns',
   'dashboard',
   'logout',
+  'login',
+  'fontAwesomeIcons',
+  'notFount',
 ];
 
 const initOption = {
