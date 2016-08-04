@@ -6,11 +6,11 @@ global.document = jsdom('<!doctype html><html><body></body></html>');
 global.window = document.defaultView;
 
 window.localStorage = window.sessionStorage = {
-  getItem: function (key) {
-      return this[key];
+  getItem(key) {
+    return this[key];
   },
-  setItem: function (key, value) {
-      this[key] = value;
+  setItem(key, value) {
+    this[key] = value;
   },
 };
 
@@ -21,7 +21,7 @@ Object.keys(window).forEach((key) => {
 });
 
 global.navigator = {
-  userAgent: 'node.js'
+  userAgent: 'node.js',
 };
 
 chai.use(chaiImmutable);

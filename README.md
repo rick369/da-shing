@@ -27,9 +27,3 @@ npm run test:watch
 ```
 
 Use Airbnb's testing utility called [Enzyme](http://airbnb.io/enzyme/).
-
-## ESLint
-
-```bash
-npm run lint:watch
-```

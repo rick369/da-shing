@@ -1,4 +1,4 @@
-import { List, Map, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import { expect } from 'chai';
 
 import constants from '../../src/constants';
@@ -6,7 +6,7 @@ const { INFO } = constants;
 
 import info from '../../src/reducers/info';
 
-describe("info Reducer", () => {
+describe('info Reducer', () => {
   it('has an initial state', () => {
     const action = {};
     const nextState = info(undefined, action);
@@ -44,8 +44,8 @@ describe("info Reducer", () => {
     const action = {
       type: INFO.FETCH_INFO_SUCCESS,
       response: {
-        items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }]
-      }
+        items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
+      },
     };
     const nextState = info(state, action);
 
@@ -68,7 +68,7 @@ describe("info Reducer", () => {
       type: INFO.FETCH_INFO_FAIL,
       response: {
         error: {
-          message: 'Unauthorized'
+          message: 'Unauthorized',
         },
       },
     };
@@ -88,9 +88,9 @@ describe("info Reducer", () => {
       {
         type: INFO.FETCH_INFO_SUCCESS,
         response: {
-          items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }]
-        }
-      }
+          items: [{ id: 1, text: 'hello' }, { id: 2, text: 'good' }, { id: 3, text: 'nice' }],
+        },
+      },
     ];
 
     const finalState = actions.reduce(info, fromJS({
@@ -107,5 +107,4 @@ describe("info Reducer", () => {
       errorMessage: '',
     }));
   });
-
 });
