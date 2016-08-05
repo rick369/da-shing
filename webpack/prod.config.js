@@ -26,7 +26,7 @@ const config = {
   output: {
     path: `${rootDir}/dist/build`,
     publicPath: '/build/',
-    filename: 'bundle.js',
+    filename: 'bundle.min.js',
   },
   module: {
     loaders: [
