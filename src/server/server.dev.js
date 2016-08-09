@@ -6,6 +6,8 @@ import serialize from 'serialize-javascript';
 
 const rootDir = path.resolve(__dirname, '../..');
 
+import config from '../../config';
+
 const app = express();
 
 app.set('port', (process.env.PORT || 3000));
@@ -63,6 +65,7 @@ app.use((req, res) => {
   const i18nClient = { locale, resources };
 
   res.render('index', {
+    title: config.appName,
     i18n: serialize(i18nClient),
   });
 });

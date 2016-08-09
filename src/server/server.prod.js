@@ -13,6 +13,8 @@ import { loadOnServer } from 'redux-async-connect';
 import i18nMiddleware from 'i18next-express-middleware';
 import { I18nextProvider, loadNamespaces } from 'react-i18next';
 
+import config from '../../config';
+
 import i18n from '../i18n/i18n-server';
 import { ns } from '../i18n/initOption';
 
@@ -24,6 +26,8 @@ const rootDir = path.resolve(__dirname, '../..');
 const app = express();
 
 app.set('port', (process.env.PORT || 8080));
+app.set('views', `${rootDir}/views`);
+app.set('view engine', 'pug');
 
 app.use(favicon(`${rootDir}/dist/favicon.ico`));
 app.use(serveStatic(`${rootDir}/dist`, {
@@ -94,6 +98,15 @@ app.use((req, res) => {
     } else {
       res.status(404).send('Not found');
     }
+  });
+});
+
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  res.status(500);
+  res.render('error', {
+    title: config.appName,
+    error: err,
   });
 });
 
