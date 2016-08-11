@@ -2,11 +2,9 @@ const ns = [
   'common',
   'home',
   'about',
-  'cardColumns',
   'dashboard',
   'logout',
   'login',
-  'fontAwesomeIcons',
   'notFount',
 ];
 
