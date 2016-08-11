@@ -26,4 +26,13 @@ npm run dev
 npm run test:watch
 ```
 
+## CDN URL
+
+在 package.json 可設定 CDN_URL 環境變數
+
+在 src/utils 中，有輸出 getCDNUrl 方法來使用
+```bash
+getCDNUrl(<path>);
+```
+
 Use Airbnb's testing utility called [Enzyme](http://airbnb.io/enzyme/).
