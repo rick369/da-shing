@@ -86,6 +86,7 @@ const config = {
       'process.env.PORT': JSON.stringify(process.env.PORT),
       'process.env.APIHOST': JSON.stringify(process.env.APIHOST),
       'process.env.APIPORT': JSON.stringify(process.env.APIPORT),
+      'process.env.CDN_URL': JSON.stringify(process.env.CDN_URL),
       __DEVELOPMENT__: false,
       __DEVTOOLS__: false,
     }),

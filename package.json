@@ -18,6 +18,7 @@
       "command": "node ./bin/main.js",
       "env": {
         "NODE_ENV": "production",
+        "CDN_URL": "http://s3-ap-northeast-1.amazonaws.com/futureappworker-jp",
         "APIHOST": "init-project-api.herokuapp.com",
         "APIPORT": 80
       }
@@ -26,7 +27,7 @@
       "command": "node ./bin/main.js",
       "env": {
         "NODE_ENV": "development",
-        "PORT": 3000,
+        "CDN_URL": "http://s3-ap-northeast-1.amazonaws.com/futureappworker-jp",
         "APIHOST": "localhost",
         "APIPORT": 4000
       }
@@ -35,6 +36,7 @@
       "command": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
       "env": {
         "NODE_ENV": "production",
+        "CDN_URL": "http://s3-ap-northeast-1.amazonaws.com/futureappworker-jp",
         "APIHOST": "init-project-api.herokuapp.com",
         "APIPORT": 80
       }
