@@ -14,7 +14,7 @@
   "nav": {
     "home": "首页",
     "about": "关于我们",
-    "dashboart": "仪表板",
+    "dashboard": "仪表板",
     "fontAwesomeIcons": "字形 Awesome Icons",
     "login": "登录",
     "logout": "登出",

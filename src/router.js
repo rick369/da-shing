@@ -4,7 +4,6 @@ import {
   Router,
   browserHistory,
 } from 'react-router';
-import { ReduxAsyncConnect } from 'redux-async-connect';
 
 import routes from './routes';
 import { Provider } from 'react-redux';
@@ -33,9 +32,6 @@ render((
   <I18nextProvider i18n={i18n}>
     <Provider store={store}>
       <Router
-        render={(props) =>
-          <ReduxAsyncConnect {...props} filter={item => !item.deferred} />
-        }
         history={history}
         routes={routes}
       />

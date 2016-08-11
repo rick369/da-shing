@@ -8,7 +8,6 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
-import { loadOnServer } from 'redux-async-connect';
 
 import i18nMiddleware from 'i18next-express-middleware';
 import { I18nextProvider, loadNamespaces } from 'react-i18next';
@@ -74,26 +73,24 @@ app.use((req, res) => {
     } else if (renderProps) {
       loadNamespaces({ ...renderProps, i18n: i18nServer })
       .then(() => {
-        loadOnServer({ ...renderProps, store }).then(() => {
-          const component = (
-            <I18nextProvider i18n={i18nServer}>
-              <Provider store={store}>
-                <RouterContext {...renderProps} />
-              </Provider>
-            </I18nextProvider>
-          );
-          res.send(
-            renderToString(
-              <Html
-                lang={locale}
-                assets={global.webpack_isomorphic_tools.assets()}
-                component={component}
-                store={store}
-                i18n={i18nClient}
-              />
-            )
-          );
-        });
+        const component = (
+          <I18nextProvider i18n={i18nServer}>
+            <Provider store={store}>
+              <RouterContext {...renderProps} />
+            </Provider>
+          </I18nextProvider>
+        );
+        res.send(
+          renderToString(
+            <Html
+              lang={locale}
+              assets={global.webpack_isomorphic_tools.assets()}
+              component={component}
+              store={store}
+              i18n={i18nClient}
+            />
+          )
+        );
       });
     } else {
       res.status(404).send('Not found');
