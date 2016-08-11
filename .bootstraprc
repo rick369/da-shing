@@ -91,4 +91,4 @@ styles:
   utilities-responsive: true
 
 ### Bootstrap scripts
-scripts: false
+scripts: true

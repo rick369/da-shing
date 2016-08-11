@@ -66,6 +66,10 @@ const config = {
         loader: 'url-loader?limit=10240',
         // any image below or equal to 10K will be converted to inline base64 instead
       },
+      {
+        test: /bootstrap[\/\\]dist[\/\\]js[\/\\]umd[\/\\]/,
+        loader: 'imports?jQuery=jquery',
+      },
     ],
   },
   plugins: [
