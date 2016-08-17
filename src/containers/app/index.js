@@ -28,9 +28,12 @@ export default class App extends React.Component {
             { property: 'og:description', content: t('meta.og.description') },
           ]}
         />
+        <a href="#content" className="sr-only sr-only-focusable">{t('skipToMainContent')}</a>
         <div>
           <Header />
-          {this.props.children}
+          <div id="content" tabIndex="-1">
+            {this.props.children}
+          </div>
         </div>
         {/* eslint-disable no-undef */}
         {process.env.NODE_ENV === 'development' && __DEVTOOLS__ && <DevTools />}
