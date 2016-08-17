@@ -18,11 +18,11 @@
     "fontAwesomeIcons": "Font Awesome Icons",
     "login": "Login",
     "logout": "Logout",
-    "cardColumns": "Card Columns"
+    "cardColumns": "Card Columns",
+    "notFound": "Not Found"
   },
   "email": "Email",
   "password": "Password",
-  "notFount": "Not Found",
   "info": "Information",
   "btn": {
     "login": "Log In"

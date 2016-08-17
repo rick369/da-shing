@@ -14,7 +14,7 @@ function mapDispatchToProps() {
  mapStateToProps,
  mapDispatchToProps
 )
-@translate(['common', 'notFount'])
+@translate(['common', 'notFound'])
 export default class NotFound extends React.Component {
   static propTypes = {
     t: React.PropTypes.func.isRequired,
@@ -25,17 +25,17 @@ export default class NotFound extends React.Component {
     return (
       <section>
         <Helmet
-          title={t('nav.notFount')}
+          title={t('nav.notFound')}
           meta={[
             { charset: 'utf-8' },
-            { name: 'description', content: t('notFount:meta.description') },
-            { property: 'og:title', content: t('notFount:meta.og.title') },
-            { property: 'og:url', content: t('notFount:meta.og.url') },
-            { property: 'og:image', content: t('notFount:meta.og.image') },
-            { property: 'og:description', content: t('notFount:meta.og.description') },
+            { name: 'description', content: t('notFound:meta.description') },
+            { property: 'og:title', content: t('notFound:meta.og.title') },
+            { property: 'og:url', content: t('notFound:meta.og.url') },
+            { property: 'og:image', content: t('notFound:meta.og.image') },
+            { property: 'og:description', content: t('notFound:meta.og.description') },
           ]}
         />
-        <h2>{t('notFount')}</h2>
+        <h2>{t('nav.notFound')}</h2>
       </section>
     );
   }

@@ -18,11 +18,11 @@
     "fontAwesomeIcons": "字形 Awesome Icons",
     "login": "登录",
     "logout": "登出",
-    "cardColumns": "卡片栏"
+    "cardColumns": "卡片栏",
+    "notFound": "未找到"
   },
   "email": "电子邮件",
   "password": "密码",
-  "notFount": "未找到",
   "info": "信息",
   "btn": {
     "login": "登录"

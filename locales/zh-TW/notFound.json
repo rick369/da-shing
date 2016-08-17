@@ -3,7 +3,7 @@
     "description": "这是初始 Web 的找不到",
     "og": {
       "title": "初始 Web - 找不到",
-      "url": "http://init-project-web.herokuapp.com/notFount",
+      "url": "http://init-project-web.herokuapp.com/notFound",
       "image": "要顯示的縮圖網址",
       "description": "這是初始 Web 的找不到"
     }

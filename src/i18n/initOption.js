@@ -5,7 +5,7 @@ const ns = [
   'dashboard',
   'logout',
   'login',
-  'notFount',
+  'notFound',
 ];
 
 const initOption = {

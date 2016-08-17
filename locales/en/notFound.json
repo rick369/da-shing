@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "description": "This is Init Web's notFound page",
+    "og": {
+      "title": "Init Web - notFound",
+      "url": "http://init-project-web.herokuapp.com/notFound",
+      "image": "display a thumbnail url",
+      "description": "This is Init Web's notFound page"
+    }
+  }
+}
