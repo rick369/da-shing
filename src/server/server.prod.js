@@ -39,8 +39,9 @@ global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production';
 global.__DEVTOOLS__ = false;
 /* eslint-enable no-underscore-dangle */
 
-app.get('/locales/**', (req, res) => {
-  const filePath = rootDir + req.path;
+app.get('**/locales/**', (req, res) => {
+  const localesPath = req.path.substr(req.path.indexOf('/locales'));
+  const filePath = rootDir + localesPath;
   fs.stat(filePath, (err) => {
     if (err) {
       res.status(404).send('Sorry, we cannot find that!');

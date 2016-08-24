@@ -37,8 +37,9 @@ app.use(require('webpack-hot-middleware')(compiler, {
 }));
 /* eslint-enable no-console */
 
-app.get('/locales/**', (req, res) => {
-  const filePath = rootDir + req.path;
+app.get('**/locales/**', (req, res) => {
+  const localesPath = req.path.substr(req.path.indexOf('/locales'));
+  const filePath = rootDir + localesPath;
   fs.stat(filePath, (err) => {
     if (err) {
       res.status(404).send('Sorry, we cannot find that!');
