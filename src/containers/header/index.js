@@ -32,7 +32,7 @@ export default class Header extends React.Component {
     const { t, user } = this.props;
     return (
       <header>
-        <h1><IndexLink to="/">{t('appName')}</IndexLink></h1>
+        <h1><IndexLink to="/">{t('title')}</IndexLink></h1>
         <Nav user={user} />
         <p>
           {'Hello, '}

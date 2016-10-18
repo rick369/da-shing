@@ -11,10 +11,12 @@ import config from '../../config';
 const app = express();
 
 app.set('port', (process.env.PORT || 3000));
-app.set('views', `${rootDir}/views`);
+app.set('views', path.join(rootDir, 'views'));
 app.set('view engine', 'pug');
 
-app.use(favicon(`${rootDir}/dist/favicon.ico`));
+app.use(favicon(
+  path.join(rootDir, 'dist', 'favicon.ico')
+));
 
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpack from 'webpack';

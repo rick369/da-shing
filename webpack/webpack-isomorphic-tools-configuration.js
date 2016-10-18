@@ -1,4 +1,8 @@
-const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const path = require('path');
+
+const WebpackIsomorphicToolsPlugin = require(
+  path.join('webpack-isomorphic-tools', 'plugin')
+);
 
 module.exports = {
   assets:

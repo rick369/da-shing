@@ -10,7 +10,7 @@
     "start-prod": "better-npm-run start-prod",
     "start-dev": "better-npm-run start-dev",
     "lint": "eslint -c .eslintrc src test",
-    "test": "NODE_ENV=test mocha --compilers js:babel-core/register --require test/test-helper.js \"test/**/*-test.js\"",
+    "test": "mocha --compilers js:babel-core/register --require test/test-helper.js \"test/**/*-test.js\"",
     "test:watch": "npm run test -- --watch"
   },
   "betterScripts": {
@@ -108,7 +108,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
     "bootstrap": "4.0.0-alpha.2",
-    "bootstrap-loader": "^1.0.10",
+    "bootstrap-loader": "1.0.10",
     "classnames": "^2.2.5",
     "css-loader": "^0.23.1",
     "express": "^4.14.0",

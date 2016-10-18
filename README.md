@@ -26,6 +26,8 @@ npm run dev
 npm run test:watch
 ```
 
+Use Airbnb's testing utility called [Enzyme](http://airbnb.io/enzyme/).
+
 ## CDN URL
 
 在 package.json 可設定 CDN_URL 環境變數
@@ -35,4 +37,17 @@ npm run test:watch
 getCDNUrl(<path>);
 ```
 
-Use Airbnb's testing utility called [Enzyme](http://airbnb.io/enzyme/).
+## Responsive Web Design SCSS
+
+在各別元件專用的 style 檔案中，
+載入 src/style/util.scss ( 注意檔案位置 )
+```bash
+@import "../../styles/util";
+```
+
+然後使用 @include 語法
+```bash
+@include rwd('md') {
+  position: static;
+};
+```

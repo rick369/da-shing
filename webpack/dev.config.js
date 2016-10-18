@@ -1,26 +1,33 @@
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const path = require('path');
+
+const rootDir = path.resolve(__dirname, '..');
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
-const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const WebpackIsomorphicToolsPlugin = require(
+  path.join('webpack-isomorphic-tools', 'plugin')
+);
 
 /* eslint-disable global-require */
 const webpackIsomorphicToolsPlugin =
-  new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools-configuration'))
+  new WebpackIsomorphicToolsPlugin(require(
+    path.join(__dirname, 'webpack-isomorphic-tools-configuration')
+  ))
   .development();
 /* eslint-enable global-require */
 
 const config = {
   devtool: 'source-map',
   entry: [
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
+    path.join('webpack-hot-middleware', 'client?path=/__webpack_hmr&timeout=20000&reload=true'),
     'tether',
     'font-awesome-loader',
     'bootstrap-loader',
-    './src/router.js',
+    path.join(rootDir, 'src', 'router.js'),
   ],
   output: {
-    path: `${__dirname}/dist/build`,
+    path: path.join(rootDir, 'dist', 'build'),
     publicPath: '/build/',
     filename: 'bundle.min.js',
   },

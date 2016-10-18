@@ -18,10 +18,12 @@ const api = store => next => action => {
     successType,
     failType,
     afterSuccess,
+    payload = {},
   } = action[CALL_API];
 
   next({
     type: requestType,
+    payload,
   });
 
   const promise = new Promise((resolve) => {
@@ -38,27 +40,30 @@ const api = store => next => action => {
 
     fetch(url, {
       method,
-      body,
+      body: JSON.stringify(body),
       headers,
     })
-    .then((response) => response.json())
-    .then((json) => {
-      if (json.status < 200 || json.status >= 300) {
+    .then((response) => {
+      response.json().then((json) => {
+        if (json.status < 200 || json.status >= 300) {
+          next({
+            type: failType,
+            response: json,
+            payload,
+          });
+          resolve();
+          return;
+        }
+        if (afterSuccess) {
+          afterSuccess({ getState });
+        }
         next({
-          type: failType,
+          type: successType,
           response: json,
+          payload,
         });
         resolve();
-        return;
-      }
-      if (afterSuccess) {
-        afterSuccess({ getState });
-      }
-      next({
-        type: successType,
-        response: json,
       });
-      resolve();
     });
   });
 

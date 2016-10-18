@@ -3,28 +3,34 @@ const CleanPlugin = require('clean-webpack-plugin');
 const path = require('path');
 
 const rootDir = path.resolve(__dirname, '..');
-const assetsPath = path.resolve(rootDir, './dist/build');
+const assetsPath = path.resolve(
+  path.join(rootDir, 'dist', 'build')
+);
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
-const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const WebpackIsomorphicToolsPlugin = require(
+  path.join('webpack-isomorphic-tools', 'plugin')
+);
 
 /* eslint-disable global-require */
 const webpackIsomorphicToolsPlugin =
-  new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools-configuration'));
+  new WebpackIsomorphicToolsPlugin(require(
+    path.join(__dirname, 'webpack-isomorphic-tools-configuration')
+  ));
 /* eslint-enable global-require */
 
 const config = {
   entry: [
     'font-awesome-loader',
-    'bootstrap-loader/extractStyles',
+    path.join('bootstrap-loader', 'extractStyles'),
     'tether',
-    './src/router.js',
+    path.join(rootDir, 'src', 'router.js'),
   ],
   output: {
-    path: `${rootDir}/dist/build`,
+    path: path.join(rootDir, 'dist', 'build'),
     publicPath: '/build/',
     filename: 'bundle.min.js',
   },

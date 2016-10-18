@@ -1,0 +1,34 @@
+/*
+ * Reference
+ * http://blog.chh.tw/posts/oocss-smacss-and-css-guidelines/
+ *
+ */
+
+// 設定標籤元素的預設值，
+// 例如瀏覽器的 reset 可以寫在這裡
+// 這裡只會對標籤元素本身做設定，不會出現任何 class 或 id，但是可以有屬性選擇器或是偽類
+@import "./base";
+
+// 跟響應有關的設定
+@import "./responsive";
+
+// 控制 css 特效的地方
+// 包含了 react animation 設定
+@import "./animation";
+
+// 畫面上所有「主視覺」的定義
+// 例如 border-color、background-image 或是 font-family 等相關的 Typography 設定
+@import "./theme";
+
+// Layout 是指整個網站的「大架構」的外觀
+@import "./layout";
+
+// Partial 跟 Latout 不同，也跟 Module 不同，
+// 他比 Layout 的範圍小，可能是 header 底下的某個子元素。
+// 他不像 Module，他是特定單一領域下特別的設定。
+@import "./partial";
+
+// 可以在其他地方被重複使用，
+// 就像 Twitter Bootstrap 的 Components 一樣，
+// 或者像前面 OOCSS 所舉例的 .button 這種會被重複使用的元件模組。
+@import "./module";

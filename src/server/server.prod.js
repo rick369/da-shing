@@ -25,13 +25,17 @@ const rootDir = path.resolve(__dirname, '../..');
 const app = express();
 
 app.set('port', (process.env.PORT || 8080));
-app.set('views', `${rootDir}/views`);
+app.set('views', path.join(rootDir, 'views'));
 app.set('view engine', 'pug');
 
-app.use(favicon(`${rootDir}/dist/favicon.ico`));
-app.use(serveStatic(`${rootDir}/dist`, {
-  index: false,
-}));
+app.use(favicon(
+  path.join(rootDir, 'dist', 'favicon.ico')
+));
+app.use(serveStatic(
+  path.join(rootDir, 'dist'), {
+    index: false,
+  }
+));
 app.use(i18nMiddleware.handle(i18n));
 
 /* eslint-disable no-underscore-dangle */

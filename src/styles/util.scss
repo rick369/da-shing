@@ -1,0 +1,8 @@
+@import "./bootstrap/pre-customizations";
+@import "./bootstrap/customizations";
+
+@mixin rwd($breakpoint) {
+  @media only screen and (min-width: map-get($grid-breakpoints, $breakpoint)) {
+    @content;
+  }
+}
