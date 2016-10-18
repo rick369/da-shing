@@ -51,7 +51,7 @@ export function formLogin(email, password) {
           return;
         }
 
-        resolve(response);
+        resolve(json);
       });
     });
   });
