@@ -15,8 +15,8 @@ function mapStateToProps() {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLoginSuccess: (user, token) => {
-      dispatch(loginSuccess(user, token));
+    onLoginSuccess({ user, token }) {
+      dispatch(loginSuccess({ user, token }));
     },
   };
 }
@@ -67,11 +67,11 @@ export default class Login extends React.Component {
         return;
       }
 
-      formLogin(email, password)
+      formLogin({ email, password })
       .then((response) => {
         const { user, token } = response;
 
-        onLoginSuccess(user, token);
+        onLoginSuccess({ user, token });
 
         if (location.state && location.state.nextPathname) {
           router.replace(location.state.nextPathname);

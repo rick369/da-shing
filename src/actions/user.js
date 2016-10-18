@@ -6,7 +6,7 @@ import config from '../../config';
 
 const { USER } = constants;
 
-export function loginSuccess(user, token) {
+export function loginSuccess({ user, token }) {
   return {
     type: USER.LOGIN_SUCCESS,
     user,
@@ -20,7 +20,7 @@ export function logout() {
   };
 }
 
-export function formLogin(email, password) {
+export function formLogin({ email, password }) {
   const url = `http://${config.apiHost}:${config.apiPort}/users/login`;
   const body = JSON.stringify({
     email,
