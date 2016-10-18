@@ -36,19 +36,23 @@ export function formLogin(email, password) {
         'Content-Type': 'application/json',
       },
     })
-    .then((response) => response.json())
     .then((response) => {
-      const { authenticated, error } = response;
+      response
+      .json()
+      .then((json) => {
+        const { authenticated, error } = json;
 
-      if (!authenticated) {
-        reject(error);
-        return;
-      }
+        if (response.status !== 200) {
+          reject(error);
+        }
 
-      resolve(response);
-    })
-    .catch(error => {
-      reject(error);
+        if (!authenticated) {
+          reject(error);
+          return;
+        }
+
+        resolve(response);
+      });
     });
   });
   return promise;
