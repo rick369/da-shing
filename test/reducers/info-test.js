@@ -68,7 +68,7 @@ describe('info Reducer', () => {
       type: INFO.FETCH_INFO_FAIL,
       response: {
         error: {
-          message: 'Unauthorized',
+          _error: 'Unauthorized',
         },
       },
     };

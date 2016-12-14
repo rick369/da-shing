@@ -18,27 +18,27 @@
       "command": "node ./bin/main.js",
       "env": {
         "NODE_ENV": "production",
-        "CDN_URL": "http://s3-ap-northeast-1.amazonaws.com/futureappworker-jp",
-        "APIHOST": "init-project-api.herokuapp.com",
-        "APIPORT": 80
+        "CDN_URL": "https://s3-ap-northeast-1.amazonaws.com/futureappworker",
+        "API_HOST": "init-project-api.herokuapp.com",
+        "API_PORT": 80
       }
     },
     "start-dev": {
       "command": "node ./bin/main.js",
       "env": {
         "NODE_ENV": "development",
-        "CDN_URL": "http://s3-ap-northeast-1.amazonaws.com/futureappworker-jp",
-        "APIHOST": "localhost",
-        "APIPORT": 4000
+        "CDN_URL": "https://s3-ap-northeast-1.amazonaws.com/futureappworker",
+        "API_HOST": "localhost",
+        "API_PORT": 4000
       }
     },
     "build": {
       "command": "webpack --verbose --colors --display-error-details --config webpack/prod.config.js",
       "env": {
         "NODE_ENV": "production",
-        "CDN_URL": "http://s3-ap-northeast-1.amazonaws.com/futureappworker-jp",
-        "APIHOST": "init-project-api.herokuapp.com",
-        "APIPORT": 80
+        "CDN_URL": "https://s3-ap-northeast-1.amazonaws.com/futureappworker",
+        "API_HOST": "init-project-api.herokuapp.com",
+        "API_PORT": 80
       }
     }
   },

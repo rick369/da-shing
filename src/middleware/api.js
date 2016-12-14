@@ -45,7 +45,12 @@ const api = store => next => action => {
     })
     .then((response) => {
       response.json().then((json) => {
-        if (json.status < 200 || json.status >= 300) {
+        if (!response.ok) {
+          if (afterSuccess) {
+            afterSuccess(json, {
+              getState,
+            });
+          }
           next({
             type: failType,
             response: json,
@@ -55,7 +60,10 @@ const api = store => next => action => {
           return;
         }
         if (afterSuccess) {
-          afterSuccess({ getState });
+          afterSuccess(null, {
+            getState,
+            response: json,
+          });
         }
         next({
           type: successType,

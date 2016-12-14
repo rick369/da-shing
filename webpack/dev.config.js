@@ -2,6 +2,14 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 
+const HOST = require('../config').HOST;
+const PORT = require('../config').PORT;
+const API_HOST = require('../config').API_HOST;
+const API_PORT = require('../config').API_PORT;
+const SOCKET_HOST = require('../config').SOCKET_HOST;
+const SOCKET_PORT = require('../config').SOCKET_PORT;
+const CDN_URL = require('../config').CDN_URL;
+
 const rootDir = path.resolve(__dirname, '..');
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
@@ -82,11 +90,13 @@ const config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-      'process.env.HOST': JSON.stringify(process.env.HOST),
-      'process.env.PORT': JSON.stringify(process.env.PORT),
-      'process.env.APIHOST': JSON.stringify(process.env.APIHOST),
-      'process.env.APIPORT': JSON.stringify(process.env.APIPORT),
-      'process.env.CDN_URL': JSON.stringify(process.env.CDN_URL),
+      'process.env.HOST': JSON.stringify(HOST),
+      'process.env.PORT': JSON.stringify(PORT),
+      'process.env.API_HOST': JSON.stringify(API_HOST),
+      'process.env.API_PORT': JSON.stringify(API_PORT),
+      'process.env.SOCKET_HOST': JSON.stringify(SOCKET_HOST),
+      'process.env.SOCKET_PORT': JSON.stringify(SOCKET_PORT),
+      'process.env.CDN_URL': JSON.stringify(CDN_URL),
       __DEVELOPMENT__: true,
       __DEVTOOLS__: true,  // <-------- DISABLE redux-devtools HERE
     }),
@@ -97,8 +107,17 @@ const config = {
       'window.Tether': 'tether',
     }),
     webpackIsomorphicToolsPlugin,
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+    }),
   ],
   postcss: [autoprefixer],
+  resolve: {
+    // 設定後只需要寫 require('file') 而不用寫成 require('file.jsx')
+    extensions: ['', '.js', 'jsx', '.json', '.scss'],
+  },
 };
 
 module.exports = config;

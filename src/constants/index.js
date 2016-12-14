@@ -13,6 +13,9 @@ const constants = {
     FETCH_INFO_SUCCESS: null,
     FETCH_INFO_FAIL: null,
   },
+  CHAR: {
+    ADD_CHAR_MESSAGE_TEXT: null,
+  },
 };
 
 export default keymirrorNested(constants);

@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 import constants from '../constants';
 
-import config from '../../config';
+import { API_HOST, API_PORT } from '../../config';
 
 const { USER } = constants;
 
@@ -21,7 +21,7 @@ export function logout() {
 }
 
 export function formLogin({ email, password }) {
-  const url = `http://${config.apiHost}:${config.apiPort}/users/login`;
+  const url = `http://${API_HOST}:${API_PORT}/users/login`;
   const body = JSON.stringify({
     email,
     password,
@@ -38,21 +38,21 @@ export function formLogin({ email, password }) {
     })
     .then((response) => {
       response
-      .json()
-      .then((json) => {
-        const { authenticated, error } = json;
+        .json()
+        .then((json) => {
+          const { authenticated, error } = json;
 
-        if (response.status !== 200) {
-          reject(error);
-        }
+          if (!response.ok) {
+            reject(error);
+          }
 
-        if (!authenticated) {
-          reject(error);
-          return;
-        }
+          if (!authenticated) {
+            reject(error);
+            return;
+          }
 
-        resolve(json);
-      });
+          resolve(json);
+        });
     });
   });
   return promise;

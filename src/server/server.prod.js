@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 import i18nMiddleware from 'i18next-express-middleware';
 import { I18nextProvider, loadNamespaces } from 'react-i18next';
 
-import config from '../../config';
+import { APP_NAME, PORT } from '../../config';
 
 import i18n from '../i18n/i18n-server';
 import { ns } from '../i18n/initOption';
@@ -24,7 +24,7 @@ import Html from '../helpers/Html';
 const rootDir = path.resolve(__dirname, '../..');
 const app = express();
 
-app.set('port', (process.env.PORT || 8080));
+app.set('port', (PORT || 8080));
 app.set('views', path.join(rootDir, 'views'));
 app.set('view engine', 'pug');
 
@@ -107,7 +107,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   res.status(500);
   res.render('error', {
-    title: config.appName,
+    title: APP_NAME,
     error: err,
   });
 });

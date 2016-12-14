@@ -8,6 +8,7 @@ import {
 import App from './containers/app';
 import Home from './containers/home';
 import About from './containers/about';
+import Char from './containers/char';
 import Login from './containers/login';
 import Logout from './containers/logout';
 import Dashboard from './containers/dashboard';
@@ -42,6 +43,7 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="about" component={About} />
+    <Route path="char" component={Char} />
     <Route path="login" component={Login} onEnter={requireNotLoggedIn} />
     <Route path="logout" component={Logout} onEnter={requireAuth} />
     <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />

@@ -6,11 +6,11 @@ import serialize from 'serialize-javascript';
 
 const rootDir = path.resolve(__dirname, '../..');
 
-import config from '../../config';
+import { APP_NAME, PORT } from '../../config';
 
 const app = express();
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (PORT || 3000));
 app.set('views', path.join(rootDir, 'views'));
 app.set('view engine', 'pug');
 
@@ -68,7 +68,7 @@ app.use((req, res) => {
   const i18nClient = { locale, resources };
 
   res.render('index', {
-    title: config.appName,
+    title: APP_NAME,
     i18n: serialize(i18nClient),
   });
 });

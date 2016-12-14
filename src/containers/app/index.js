@@ -27,6 +27,12 @@ export default class App extends React.Component {
             { property: 'og:image', content: t('meta.og.image') },
             { property: 'og:description', content: t('meta.og.description') },
           ]}
+          script={[
+            {
+              src: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js',
+              type: 'text/javascript',
+            },
+          ]}
         />
         <a href="#content" className="sr-only sr-only-focusable">{t('skipToMainContent')}</a>
         <div>

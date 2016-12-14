@@ -27,6 +27,7 @@ export default class Nav extends React.Component {
             )
           }
           <li><Link to="/about" activeStyle={style.linkActive}>About</Link></li>
+          <li><Link to="/char" activeStyle={style.linkActive}>Char</Link></li>
           {
             !user.isLoggedIn && (
               <li><Link to="/login" activeStyle={style.linkActive}>Login</Link></li>

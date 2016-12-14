@@ -34,7 +34,8 @@ export default function info(state = initialState, action) {
     return state.merge({
       isloaded: false,
       isFetching: false,
-      errorMessage: action.response.error.message,
+      // eslint-disable-next-line
+      errorMessage: action.response.error._error,
     });
   }
   return state;

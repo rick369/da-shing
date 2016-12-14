@@ -1,6 +1,8 @@
 import validation from './validation';
 
-const getCDNUrl = (path) => process.env.CDN_URL + path;
+import { CDN_URL } from '../../config';
+
+const getCDNUrl = (path) => CDN_URL + path;
 
 export default {
   validation,
