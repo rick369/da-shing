@@ -4,6 +4,14 @@
  *
  */
 
+// This path is relative to this file!
+$fonts-url-path: './fonts';
+
+@font-face {
+  font-family: 'digital-7';
+  src: url('#{$fonts-url-path}/digital-7.ttf') format('truetype');
+}
+
 // 設定標籤元素的預設值，
 // 例如瀏覽器的 reset 可以寫在這裡
 // 這裡只會對標籤元素本身做設定，不會出現任何 class 或 id，但是可以有屬性選擇器或是偽類
