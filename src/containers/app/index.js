@@ -1,17 +1,57 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { translate } from 'react-i18next';
+import { connect } from 'react-redux';
 
 import Header from '../header';
 import DevTools from '../DevTools';
 
+import Modal from '../../components/modal';
+
+import { closeModal } from '../../actions/app';
+
+function mapStateToProps(state) {
+  return {
+    app: state.app.toJS(),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    handleModalClose() {
+      dispatch(closeModal());
+    },
+  };
+}
+
+@connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
 @translate()
 export default class App extends React.Component {
   static propTypes = {
     t: React.PropTypes.func.isRequired,
     children: React.PropTypes.element.isRequired,
+    app: React.PropTypes.object.isRequired,
+    handleModalClose: React.PropTypes.func.isRequired,
   };
   componentDidMount() {}
+  getModal() {
+    const { app, handleModalClose } = this.props;
+    if (app.modal.isOpen) {
+      return (
+        <Modal
+          handleModalClose={handleModalClose}
+          title={app.modal.title}
+          body={app.modal.body}
+          isNotHasHeader={app.modal.isNotHasHeader}
+          isNotHasFooter={app.modal.isNotHasFooter}
+        />
+      );
+    }
+    return false;
+  }
   render() {
     const { t } = this.props;
 
@@ -41,6 +81,7 @@ export default class App extends React.Component {
             {this.props.children}
           </div>
         </div>
+        {this.getModal()}
         {/* eslint-disable no-undef */}
         {process.env.NODE_ENV === 'development' && __DEVTOOLS__ && <DevTools />}
         {/* eslint-enable no-undef */}

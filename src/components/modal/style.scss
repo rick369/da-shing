@@ -1,0 +1,70 @@
+@import '../../styles/bootstrap/pre-customizations.scss';
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-modal;
+  .backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $modal-backdrop-bg;
+    opacity: .5;
+  }
+  .contentBox {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    .contentBoxBg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    .dialog {
+      position: relative;
+      .content {
+        background-color: $modal-content-bg;
+        border: 1px solid $modal-content-border-color;
+        border-radius: $border-radius-lg;
+        outline: 0;
+        .header {
+          display: flex;
+          justify-content: space-between;
+          padding: $modal-title-padding;
+          border-bottom: 1px solid $modal-header-border-color;
+          .title {
+            line-height: $modal-title-line-height;
+          }
+          .close {
+            cursor: pointer;
+            font-size: 1.25rem;
+            opacity: .5;
+            transition: opacity .15s linear;
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+        .body {
+          padding: $modal-inner-padding;
+        }
+        .footer {
+          padding: $modal-inner-padding;
+          border-top: 1px solid $modal-footer-border-color;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

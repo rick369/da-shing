@@ -3,6 +3,8 @@ import keymirrorNested from 'keymirror-nested';
 const constants = {
   APP: {
     CHANGE_LANGUAGE: null,
+    OPEN_MODAL: null,
+    CLOSE_MODAL: null,
   },
   USER: {
     LOGIN_SUCCESS: null,

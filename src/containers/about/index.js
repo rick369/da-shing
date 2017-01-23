@@ -3,12 +3,23 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { translate } from 'react-i18next';
 
+import { openModal } from '../../actions/app';
+
 function mapStateToProps() {
   return {};
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return {
+    handleOpenModal({ title, body, isNotHasHeader, isNotHasFooter }) {
+      dispatch(openModal({
+        title,
+        body,
+        isNotHasHeader,
+        isNotHasFooter,
+      }));
+    },
+  };
 }
 
 @connect(
@@ -19,10 +30,11 @@ function mapDispatchToProps() {
 export default class About extends React.Component {
   static propTypes = {
     t: React.PropTypes.func.isRequired,
+    handleOpenModal: React.PropTypes.func.isRequired,
   };
   componentDidMount() {}
   render() {
-    const { t } = this.props;
+    const { t, handleOpenModal } = this.props;
     return (
       <section>
         <Helmet
@@ -37,6 +49,18 @@ export default class About extends React.Component {
           ]}
         />
         <h2>{t('nav.about')}</h2>
+        <p>
+          <button
+            onClick={() => {
+              handleOpenModal({
+                title: 'Hello',
+                body: 'Hello world',
+              });
+            }}
+          >
+            Open Modal
+          </button>
+        </p>
       </section>
     );
   }

@@ -8,3 +8,19 @@ export function changeLanguage({ lang }) {
     lang,
   };
 }
+
+export function openModal({ title, body, isNotHasHeader, isNotHasFooter }) {
+  return {
+    type: APP.OPEN_MODAL,
+    title,
+    body,
+    isNotHasHeader,
+    isNotHasFooter,
+  };
+}
+
+export function closeModal() {
+  return {
+    type: APP.CLOSE_MODAL,
+  };
+}

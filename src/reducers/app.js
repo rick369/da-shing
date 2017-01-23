@@ -8,6 +8,13 @@ const initialState = Immutable.fromJS({
   i18n: {
     lang: '',
   },
+  modal: {
+    isOpen: false,
+    isNotHasHeader: false,
+    isNotHasFooter: false,
+    title: '',
+    body: '',
+  },
 });
 
 export default function App(state = initialState, action) {
@@ -24,6 +31,28 @@ export default function App(state = initialState, action) {
       ['i18n', 'lang'],
       action.lang
     );
+  }
+
+  if (action.type === APP.OPEN_MODAL) {
+    // 為 body 加上 modal-open class
+    document.body.classList.toggle('modal-open');
+    return state.mergeDeep({
+      modal: {
+        isOpen: true,
+        title: action.title,
+        body: action.body,
+        isNotHasHeader: action.isNotHasHeader,
+        isNotHasFooter: action.isNotHasFooter,
+      },
+    });
+  }
+
+  if (action.type === APP.CLOSE_MODAL) {
+    // 為 body 移除 modal-open class
+    document.body.classList.toggle('modal-open');
+    return state.mergeDeep({
+      modal: initialState.toJS().modal,
+    });
   }
 
   return state;
