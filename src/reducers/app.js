@@ -17,7 +17,7 @@ const initialState = Immutable.fromJS({
   },
 });
 
-export default function App(state = initialState, action) {
+export default function app(state = initialState, action) {
   // 若是來自 server side rendering 的 INITIAL_STATE 就轉換它，
   // 如果有需要轉換來自 INITIAL_STATE 的資料，就一定要寫這段
   if (typeof state.get === 'undefined') {
